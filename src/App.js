@@ -9,7 +9,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Register />} />
-        <Route path='/dark' element={<Register2 />} />
       </Routes>
     </BrowserRouter>
       
