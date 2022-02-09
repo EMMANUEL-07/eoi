@@ -4,7 +4,7 @@ import { blue } from '@mui/material/colors';
 
 
 
-const CareerDetails = ({text}) => {
+const CareerDetails = ({text, change}) => {
 
 
   const [selectedKnowledge, setSelectedKnowledge] = useState('');
@@ -72,7 +72,7 @@ const CareerDetails = ({text}) => {
       <div className={'flex justify-between my-6'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>What would you describe as most challenging in your selected field? <span className={'text-red-600'} >*</span></div>
-          <div><input type='text' placeholder='Lagos' onChange={(e) => setChallenge(e.target.value)} className={'w-full text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
+          <div><input type='text' onChange={(e) => setChallenge(e.target.value)} className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
         </div>
       </div>
       
@@ -80,7 +80,7 @@ const CareerDetails = ({text}) => {
       <div className={'flex justify-between my-6'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>Have you worked on any project in the past? Give details of the one you feel most impressed about?</div>
-          <div><input type='text' placeholder='Lagos' onChange={(e) => setPastProject(e.target.value)} className={'w-full text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
+          <div><input type='text' onChange={(e) => setPastProject(e.target.value)} className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
         </div>
       </div>
       
@@ -88,7 +88,7 @@ const CareerDetails = ({text}) => {
       <div className={'flex justify-between my-6'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>Do you have a Github URL? Kindly drop the link </div>
-          <div><input type='text' placeholder='Lagos' onChange={(e) => setGitHub(e.target.value)} className={'w-full text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
+          <div><input type='text'  onChange={(e) => setGitHub(e.target.value)} className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
         </div>
       </div>
       
@@ -96,7 +96,7 @@ const CareerDetails = ({text}) => {
       <div className={'flex justify-between my-6'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>Why do you want to join my network? <span className={'text-red-600'} >*</span></div>
-          <div><input type='text' placeholder='Lagos' onChange={(e) => setWhyJoin(e.target.value)} className={'w-full text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
+          <div><input type='text'  onChange={(e) => setWhyJoin(e.target.value)} className={'w-full bg-transparent  text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
         </div>
       </div>
 
@@ -111,7 +111,7 @@ const CareerDetails = ({text}) => {
       </div>
 
       <div className={'flex justify-center my-10 font-bold px-36 '}>
-        <div className={'font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-blue-800 '}>
+        <div className={'font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-blue-800 '} onClick={() => change(true)}>
           Submit
         </div>
       </div>
