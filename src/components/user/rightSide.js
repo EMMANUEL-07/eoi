@@ -7,21 +7,18 @@ import CareerDetails from './careerDetails';
 
 
 
-const RightSide = (props) => {
+const RightSide = ({bg, text}) => {
 
+  const [pd, setpd] = useState(true)
+
+  const bgc =`bg-${bg}`;
 
   return (
-    <div className={`h-full bg-${props.bg} w-[58%]  -z-0 `}>
+    <div className={`h-full ${bgc} w-[58%]  -z-0 `}>
 
       <img src={Vector} alt='vector image' className={'absolute top-0 right-0 -z-10'} />
 
-
-
-      <PersonalDetails text={props.text} />
-      {/* <CareerDetails text={props.text} /> */}
-
-
-
+      {pd ? <PersonalDetails text={text} change={setpd}  /> : <CareerDetails text={text}  change={setpd} /> }
 
     </div>
 

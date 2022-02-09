@@ -6,8 +6,8 @@ import RightSide from '../../components/user/rightSide'
 const Register = () => {
   return (
     <div className={'h-screen flex absolute' }>
-      <LeftSide link='/dark' />
-      <RightSide bg='white' text='black' />
+      <LeftSide link='/' />
+      <RightSide bg='dark' text='white' />
       <MiddleSide />
     </div>
   )
