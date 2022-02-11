@@ -8,7 +8,7 @@ const Register = () => {
   const [bg, setbg] = useState(true)
 
   return (
-    <div className={'h-screen flex absolute' }>
+    <div className={'h-screen flex absolute w-full' }>
       <LeftSide link='/dark' bgVal={bg} bgChange={setbg} />
       {bg ? <RightSide bg={bg} /> :  <RightSide bg={bg} /> }
       <MiddleSide />

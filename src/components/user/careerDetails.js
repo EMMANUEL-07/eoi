@@ -57,7 +57,7 @@ const CareerDetails = ({text, change}) => {
 
 
   return (
-    <div className={`h-full py-12 px-36  mx-auto z-0 text-${text}`}>
+    <div className={`h-full py-6 px-36  mx-auto z-0 text-${text}`}>
       <div className={'flex justify-between my-6'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>Do you have knowledge of selected field? <span className={'text-red-600'} >*</span></div>
@@ -111,7 +111,7 @@ const CareerDetails = ({text, change}) => {
       </div>
 
       <div className={'flex justify-center my-10 font-bold px-36 '}>
-        <div className={'font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-blue-800 '} onClick={() => change(true)}>
+        <div className={'font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:border-blue-500 focus:border-blue-500'} onClick={() => change(true)}>
           Submit
         </div>
       </div>
