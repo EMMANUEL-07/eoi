@@ -4,12 +4,14 @@ import PersonalDetails from './personalDetails';
 import Vector from '../../assets/Vector.png'
 import CareerDetails from './careerDetails';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
+import FormIntro from './formIntro';
+import FormEnd from './formEnd';
 
 
 
 const RightSide = () => {
 
-  const [pd, setpd] = useState(true)
+  const [pd, setpd] = useState(1)
   const [bg, setbg] = useState(true)
 
   let bgc = `bg-white`;
@@ -35,7 +37,10 @@ const RightSide = () => {
       
       <img src={Vector} alt='vector' className={'absolute top-0 right-0 -z-10'} />
       
-      {pd ? <PersonalDetails text={text} change={setpd} /> : <CareerDetails text={text} change={setpd} />}
+      {pd == 1 && <FormIntro text={text} change={setpd} /> } 
+      {pd == 2 && <PersonalDetails text={text} change={setpd} /> } 
+      {pd == 3 && <CareerDetails text={text} change={setpd} /> } 
+      {pd == 4 && <FormEnd text={text} /> } 
 
     </div>
 

@@ -9,6 +9,8 @@ module.exports = {
         secondary: '#FF4500',
         accent: '#EDF1F7',
         dark: '#14147A',
+        orangee: '#FF4500',
+        tick: '#6385F9',
         captionRed: {
           1: 'rgba(255, 69, 0, 1)',
           2: 'rgba(255, 69, 0, 0.93)',

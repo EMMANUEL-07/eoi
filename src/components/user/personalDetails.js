@@ -135,11 +135,16 @@ const PersonalDetails = ({text, change}) => {
         </div>
       </div>
 
-      <div className={'flex justify-center my-10 font-bold px-36 '}>
-        <div className={'font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600'} onClick={() => change(false)}>
+      <div className={'flex w-full font-bold justify-around'}>
+        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600 hover:bg-white hover:text-blue-600'} onClick={() => change(1)}>
+          Previous
+        </div>
+
+        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600 hover:bg-white hover:text-blue-600'} onClick={() => change(3)}>
           Next
         </div>
       </div>
+
 
     </div>
 

@@ -10,7 +10,7 @@ const LeftSide = () => {
       </div>
 
       <div className={'pt-32 pl-16 tracking-wider flex items-center font-extrabold text-4xl text-white'}>
-        Want to be a part of my community? <br /> Don’t miss out and fill the form.
+      Kindly fill the form with the right information and a team member will reach out to you within 3 days.
       </div>
     </div>
   )
