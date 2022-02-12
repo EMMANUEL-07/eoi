@@ -9,7 +9,6 @@ const CareerDetails = ({text, change}) => {
 
   const [selectedKnowledge, setSelectedKnowledge] = useState('');
   const [selectedUnderstand, setSelectedUnderstand] = useState('');
-  const [selectedSkill, setSelectedSkill] = useState('');
   const [challenge, setChallenge] = useState('');
   const [pastProject, setPastProject] = useState('');
   const [gitHub, setGitHub] = useState('');

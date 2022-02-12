@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { Radio } from '@mui/material';
-import { blue } from '@mui/material/colors';
-import { FaRegSmileWink } from 'react-icons/fa';
+import React from 'react';
 import { Icon } from '@iconify/react';
 
 
@@ -11,7 +8,7 @@ const FormEnd = ({ text }) => {
   let color = 'text-orangee';
   let smiley = 'text-dark';
 
-  if (text == 'black') {
+  if (text === 'black') {
     color = 'text-orangee';
     smiley = 'text-dark';
   }

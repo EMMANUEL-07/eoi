@@ -4,11 +4,25 @@ import { FcGoogle } from 'react-icons/fc'
 
 
 const LoginForm = ({ text }) => {
+
+  let color = 'bg-white text-black border-white'
+  let forms = ' '
+  let login= 'hover:border-primary hover:border-2'
+
+  if(text==='black'){
+    color = 'bg-dark text-white border-dark'
+    login =  'hover:border-primary hover:border-2'
+  }
+  else{
+    color = 'bg-white text-black border-white'
+    login = ''
+  }
+
   return (
     <div className={`h-full px-40  mx-auto z-0 text-${text} w-full`}>
       <div className={'text-3xl mb-10 font-bold text-center'}>Login to your Dashboard</div>
       
-      <div className={'flex items-center text-3xl my-8 bg-white py-3 px-12 text-black border-4 border-white hover:cursor-pointer hover:scale-105'}>
+      <div className={`flex items-center text-3xl my-8 ${color} py-3 px-12  border-4  hover:cursor-pointer hover:scale-105`}>
         <div className={'basis-1/5'} ><GrFacebook color='#277DFF' size='40' /></div>
         <div className={'basis-4/5'}>Sign in with Facebook</div>
       </div>
@@ -35,7 +49,7 @@ const LoginForm = ({ text }) => {
       </div>
       
       <div className={'flex justify-center mt-10 font-bold px-36 '}>
-        <div className={'font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600'}>
+        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:cursor-pointer ${login}`}>
           Login
         </div>
       </div>

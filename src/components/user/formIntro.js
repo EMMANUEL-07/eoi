@@ -1,77 +1,9 @@
-import React, { useState } from 'react';
-import { Radio } from '@mui/material';
-import { blue } from '@mui/material/colors';
-import { BsCheck } from 'react-icons/bs'
-import { MdCheck } from 'react-icons/md'
+import React from 'react';
 import { GoCheck } from 'react-icons/go'
 
 
 
 const FormIntro = ({ text, change }) => {
-
-
-  const [selectedGender, setSelectedGender] = useState('');
-  const [selectedQualification, setSelectedQualification] = useState('');
-  const [selectedSkill, setSelectedSkill] = useState('');
-  const [location, setLocation] = useState('');
-
-  const handleGender = (event) => {
-    setSelectedGender(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handleQualification = (event) => {
-    setSelectedQualification(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handleSkill = (event) => {
-    setSelectedSkill(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const controlGender = (item) => ({
-    checked: selectedGender === item,
-    onChange: handleGender,
-    value: item,
-    name: 'size-radio-button-demo',
-    inputProps: { 'aria-label': item },
-    sx: {
-      color: blue[800],
-      '&.Mui-checked': {
-        color: blue[600],
-      }
-    }
-  });
-
-  const controlQualification = (item) => ({
-    checked: selectedQualification === item,
-    onChange: handleQualification,
-    value: item,
-    name: 'size-radio-button-demo',
-    inputProps: { 'aria-label': item },
-    sx: {
-      color: blue[800],
-      '&.Mui-checked': {
-        color: blue[600],
-      }
-    }
-  });
-
-  const controlSkill = (item) => ({
-    checked: selectedSkill === item,
-    onChange: handleSkill,
-    value: item,
-    name: 'size-radio-button-demo',
-    inputProps: { 'aria-label': item },
-    sx: {
-      color: blue[800],
-      '&.Mui-checked': {
-        color: blue[600],
-      }
-    }
-  });
-
 
   return (
     <div className={`h-full py-6 px-36  mx-auto z-0 text-${text} text-lg  text-justify`}>

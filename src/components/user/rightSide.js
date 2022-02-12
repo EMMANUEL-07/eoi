@@ -37,10 +37,10 @@ const RightSide = () => {
       
       <img src={Vector} alt='vector' className={'absolute top-0 right-0 -z-10'} />
       
-      {pd == 1 && <FormIntro text={text} change={setpd} /> } 
-      {pd == 2 && <PersonalDetails text={text} change={setpd} /> } 
-      {pd == 3 && <CareerDetails text={text} change={setpd} /> } 
-      {pd == 4 && <FormEnd text={text} /> } 
+      {pd === 1 && <FormIntro text={text} change={setpd} /> } 
+      {pd === 2 && <PersonalDetails text={text} change={setpd} /> } 
+      {pd === 3 && <CareerDetails text={text} change={setpd} /> } 
+      {pd === 4 && <FormEnd text={text} /> } 
 
     </div>
 
