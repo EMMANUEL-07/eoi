@@ -1,6 +1,6 @@
 import React from 'react'
-import HumanStanding from '../../assets/humanStanding.png';
-import SlantedPhone from '../../assets/slantedPhone.png';
+import HumanStanding from '../../../assets/humanStanding.png';
+import SlantedPhone from '../../../assets/slantedPhone.png';
 
 
 const MiddleSide = () => {

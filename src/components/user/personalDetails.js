@@ -4,7 +4,7 @@ import { blue } from '@mui/material/colors';
 
 
 
-const PersonalDetails = ({text, change}) => {
+const PersonalDetails = ({ text, change }) => {
 
 
   const [selectedGender, setSelectedGender] = useState('');
@@ -117,20 +117,36 @@ const PersonalDetails = ({text, change}) => {
       <div className={'flex justify-between my-6'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>What technical skill are you most interested in? <span className={'text-red-600'} >*</span></div>
-          <div className={'flex flex-wrap  -ml-3'}>
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('UI/UX')} /> UI/UX </div>
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Frontend Development')} /> Frontend Development </div>
+          <div className={'flex flex-col flex-wrap  -ml-3'}>
 
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('QA Testing')} /> QA Testing </div>
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Data Science')} /> Data Science </div>
-            
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Backend Development')} /> Backend Development </div>
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Mobile Application Development')} /> Mobile Application Development </div>
-            
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('DevOps')} /> DevOps </div>
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Technical Product Manager SCRUM Master')} /> Technical Product Manager SCRUM Master </div>
-            
-            <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Others')} /> Others </div>
+            <div className={'flex w-full'}>
+              <div className={'flex items-center pr-10  w-96'}> <Radio {...controlSkill('Frontend Development')} /> Frontend Development </div>
+              <div className={'flex items-center pr-10'}> <Radio  {...controlSkill('UI/UX')} /> UI/UX </div>
+            </div>
+
+            <div className={'flex w-full'}>
+              <div className={'flex items-center pr-10  w-96'}> <Radio {...controlSkill('Backend Development')} /> Backend Development </div>
+              <div className={'flex items-center pr-10'}> <Radio {...controlSkill('Data Science')} /> Data Science </div>
+            </div>
+
+            <div className={'flex w-full'}>
+              <div className={'flex items-center pr-10  w-96'}> <Radio {...controlSkill('Mobile Application Development')} /> Mobile Application Development </div>
+              <div className={'flex items-center pr-10'}> <Radio {...controlSkill('QA Testing')} /> QA Testing </div>
+            </div>
+
+            <div className={'flex w-full'}>
+              <div className={'flex items-center pr-10  w-96'}> <Radio {...controlSkill('Technical Product Manager SCRUM Master')} /> Technical Product Manager SCRUM Master </div>
+              <div className={'flex items-center pr-10'}> <Radio {...controlSkill('DevOps')} /> DevOps </div>
+            </div>
+
+            <div className={'flex w-full'}>
+              <div className={'flex items-center pr-8'}> <Radio {...controlSkill('Others')} /> Others: </div>
+              <div className={'w-full'}>
+                <input type='text' placeholder='Name of other skill' className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} />
+              </div>
+              
+            </div>
+
           </div>
         </div>
       </div>

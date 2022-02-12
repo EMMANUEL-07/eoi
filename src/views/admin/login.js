@@ -1,7 +1,7 @@
 import React from 'react'
-import LeftSideAdmin from '../../components/admin/leftSideAdmin'
-import MiddleSideAdmin from '../../components/admin/middleSideAdmin'
-import RightSideAdmin from '../../components/admin/rightSideAdmin'
+import LeftSideAdmin from '../../components/admin/login/leftSideLogin'
+import MiddleSideAdmin from '../../components/admin/login/middleSideLogin'
+import RightSideAdmin from '../../components/admin/login/rightSideLogin'
 
 const Login = () => {
 
