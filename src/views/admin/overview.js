@@ -3,11 +3,11 @@ import Header from '../../components/admin/dashboard/header'
 import Menu from '../../components/admin/dashboard/menu'
 import Profile from '../../components/admin/dashboard/profile'
 
-const Settings = () => {
+const Overview = () => {
   return (
     <div className={'w-full h-screen flex'}>
       <div className={'basis-1/6'}>
-        <Menu selected='account' />
+        <Menu selected='dashboard' />
       </div>
       <div className={'h-full flex flex-col basis-5/6'}>
         <Header />
@@ -18,4 +18,4 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export default Overview;
