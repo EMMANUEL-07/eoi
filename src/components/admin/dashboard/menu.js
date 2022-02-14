@@ -5,18 +5,37 @@ import { Avatar } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
-const Menu = ({ selected }) => {
+const Menu = ({ selected, bgDash, setBgDash }) => {
 
-  let dashboard = '';
-  let account = '';
-  let logout = '';
+  
+  let menuBg = 'bg-dark'
+  let hoverBg = 'hover:bg-blue-700 hover:text-white'
+
+  let dashboard = hoverBg;
+  let account = hoverBg;
+  let logout = hoverBg;
+
+  
+  
+  if(bgDash){
+    menuBg = 'bg-lightDash text-dark'
+    hoverBg = 'hover:bg-lightDashHov hover:text-dark'
+  }
+  else{
+    menuBg = 'bg-dark'
+    hoverBg = 'hover:bg-blue-700 hover:text-white';
+  }
 
   if (selected == 'dashboard') {
-    dashboard = 'bg-dark';
+    dashboard = `${menuBg} ${hoverBg}`;
+    account =  `${hoverBg}`;
+    logout =  `${hoverBg}`;
   }
 
   if (selected == 'account') {
-    account = 'bg-dark';
+    account =  `${menuBg} ${hoverBg}`;
+    dashboard =  `${hoverBg}`;
+    logout =  `${hoverBg}`;
   }
 
   return (
@@ -31,14 +50,14 @@ const Menu = ({ selected }) => {
       </div>
 
       <div className={'flex flex-col items-end text-2xl font-bold mr-0'}>
-        <Link to='/overview' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:bg-blue-700 hover:cursor-pointer ${dashboard}`}>
+        <Link to='/overview' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${dashboard}`}>
           <Icon icon="ic:round-space-dashboard" className={'mx-1'} />  Dashboard
         </Link>
-        <Link to='/settings' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:bg-blue-700 hover:cursor-pointer ${account}`}>
+        <Link to='/settings' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${account}`}>
           <Icon icon="clarity:settings-solid" className={'mx-1'} /> Account
         </Link>
 
-        <Link to='/login' className={'my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:bg-blue-700 hover:cursor-pointer'}>
+        <Link to='/login' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${logout}`}>
           <Icon icon="ic:twotone-log-out" className={'mx-1'} /> Log Out
         </Link>
       </div>
