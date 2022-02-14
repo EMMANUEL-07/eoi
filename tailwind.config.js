@@ -9,6 +9,8 @@ module.exports = {
         secondary: '#FF4500',
         accent: '#EDF1F7',
         dark: '#14147A',
+        orangee: '#FF4500',
+        tick: '#6385F9',
         captionRed: {
           1: 'rgba(255, 69, 0, 1)',
           2: 'rgba(255, 69, 0, 0.93)',
@@ -21,8 +23,9 @@ module.exports = {
       }
     },
     backgroundImage: {
-      leftSide: "linear-gradient(179.68deg, #FFD7C8 0.27%, #6385F9 154.02%);",
-      vector: "linear-gradient(180deg, #FFD7C8 0%, #5195FF 100%);",
+      leftSide: "linear-gradient(179.68deg, #FFD7C8 0.27%, #6385F9 154.02%)",
+      menu: "linear-gradient(180deg, #6385F9 -15.74%, #FFD7C8 112.63%)",
+      vector: "linear-gradient(180deg, #FFD7C8 0%, #5195FF 100%)",
       redSide: "linear-gradient(104.97deg, #FF4500 39.45%, rgba(255, 69, 0, 0.932578) 50.31%, rgba(255, 69, 0, 0) 101.45%)"
     }
     
