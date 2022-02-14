@@ -8,10 +8,10 @@ import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
 
 const RightSideAdmin = () => {
 
-  const [bg, setbg] = useState(true)
+  const [bg, setbg] = useState(false)
 
-  let bgc = `bg-white`;
-  let text = `black`;
+  let bgc = `bg-dark`;
+  let text = `white`;
 
 
   if (bg) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { GrFacebook } from 'react-icons/gr'
 import { FcGoogle } from 'react-icons/fc'
+import { Link } from 'react-router-dom'
 
 
 const LoginForm = ({ text }) => {
@@ -50,7 +51,7 @@ const LoginForm = ({ text }) => {
       
       <div className={'flex justify-center mt-10 font-bold px-36 '}>
         <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:cursor-pointer ${login}`}>
-          Login
+          <Link to='/overview'> Login </Link>
         </div>
       </div>
     </div>

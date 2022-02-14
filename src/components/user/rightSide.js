@@ -12,10 +12,10 @@ import FormEnd from './formEnd';
 const RightSide = () => {
 
   const [pd, setpd] = useState(1)
-  const [bg, setbg] = useState(true)
+  const [bg, setbg] = useState(false)
 
-  let bgc = `bg-white`;
-  let text = `black`;
+  let bgc = `bg-dark`;
+  let text = `white`;
 
   if (bg) {
     bgc = `bg-white`;
