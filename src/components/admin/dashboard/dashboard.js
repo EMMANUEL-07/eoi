@@ -54,23 +54,16 @@ const Dashboard = ({bgDash}) => {
   const skillsData = [["Frontend", "Front end development"], ["UI/UX", "UI/UX design"], ["Backend", "Back end development"], ["DevOps", "DevOps"], ["QA Testing", "QA testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile application development"], ["Product Manager", "Technical Product Management - SCRUM MASTER"], ["Others", "Others"]]
 
 
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios("https://teaminnovation-endpoint.herokuapp.com/eoi-list/")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }, []);
 
-  const DataSet = axios
-    .get('https://teaminnovation-endpoint.herokuapp.com/eoi-list')
-    .then(result => {
-      // handle success
-      console.log('server', result);
-      return result;
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-
-  console.log(DataSet)
+  console.log(data);
 
   const filterState = (data) => {
     if (states == '') {
