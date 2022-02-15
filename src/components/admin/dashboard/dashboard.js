@@ -5,14 +5,14 @@ import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
 
-const Dashboard = ({bgDash}) => {
+const Dashboard = ({ bgDash }) => {
 
   let change = 'bg-dark text-white'
 
-  if(bgDash){
+  if (bgDash) {
     change = 'bg-lightDash text-dark'
   }
-  else{
+  else {
     change = 'bg-dark text-white'
   }
 
@@ -55,22 +55,19 @@ const Dashboard = ({bgDash}) => {
 
 
 
-  const DataSet = axios
-    .get('https://teaminnovation-endpoint.herokuapp.com/eoi-list')
-    .then(result => {
-      // handle success
-      console.log('server', result);
-      return result;
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-
-  console.log(DataSet)
+  var config = {
+    method: 'get',
+    url: 'https://teaminnovation-endpoint.herokuapp.com/eoi-list',
+    headers: { }
+  };
+  
+  axios(config)
+  .then(function (response) {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
   const filterState = (data) => {
     if (states == '') {
@@ -273,7 +270,7 @@ const Dashboard = ({bgDash}) => {
               }
             };
           }}
-          pagination={{ simple: true, defaultPageSize: 10 }}
+          pagination={{ simple: true, defaultPageSize: 8 }}
         />
 
         <Modal title={modalData.fullname} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: '#14147A', color: '#fff' }} closable cancelButtonProps={{ style: { display: 'none' } }}>
