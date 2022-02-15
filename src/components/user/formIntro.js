@@ -5,29 +5,40 @@ import { GoCheck } from 'react-icons/go'
 
 const FormIntro = ({ text, change }) => {
 
-  return (
-    <div className={`h-full py-6 px-36  mx-auto z-0 text-${text} text-lg  text-justify`}>
+  let bg = 'bg-dark'
 
-      <div className={'my-4'}>
+  if (text == 'black') {
+    bg = `bg-white`;
+    text = `black`;
+  }
+  else {
+    bg = `bg-dark`;
+    text = `white`;
+  }
+
+  return (
+    <div className={`md:h-full ${bg} flex flex-col mx-auto z-0 text-${text} py-12 md:py-6 px-10 sm:px-16 lg:px-24 text-base lg:text-lg  text-justify md:overflow-auto z-40 `}>
+
+      <div className={'my-4 z-40'}>
         <span className={'text-orangee font-bold'}>Hello dear,</span> <br /><br />
         Nice to meet you. If you made it to this point, it shows you have an interest in founding your tech roots. Congratulations, you are in the right place.
       </div>
 
-      <div className={'my-4'}>
+      <div className={'my-4 z-40'}>
         My name is Segun Mustapha, the founder of Segsalerty Resources. Over the years, I have helped tach talents climax in their individual fields through proper guidance and mentorship.
       </div>
 
-      <div className={'my-4'}>
+      <div className={'my-4 z-40'}>
         <div> Our mission is to: </div>
         <div className={'flex '}>
           <GoCheck className='text-tick' size='32px' />
           <div className={'px-4 text-lg'}>Identify, mentor, and upskill obscure talents while aligning them with their skill sets and goals </div>
         </div>
-        <div className={'flex '}>
+        <div className={'flex z-40'}>
           <GoCheck className='text-tick' size='28px' />
           <div className={'px-4 text-lg'}>To deploy and situate engineers in a recognized spot in tech  global ecosystem </div>
         </div>
-        <div className={'flex '}>
+        <div className={'flex z-40'}>
           <GoCheck className='text-tick' size='28px' />
           <div className={'px-4 text-lg'}>To streamline and hasten recruitment process of talents </div>
         </div>
