@@ -21,7 +21,7 @@ module.exports = {
         dark: '#14147A',
         orangee: '#FF4500',
         tick: '#6385F9',
-        lightDash: '#d9d9d9',
+        lightDash: '#EDF1F7',
         lightDashHov: '#888',
         captionRed: {
           1: 'rgba(255, 69, 0, 1)',

@@ -83,7 +83,7 @@ const PersonalDetails = ({ text, change }) => {
 
   return (
     <div className={`md:h-full ${bg} flex flex-col mx-auto z-0 text-${text} py-12 px-10 sm:px-16 md:py-6   lg:px-24 text-base lg:text-lg  text-justify md:overflow-auto z-40`}>
-      <div className={'flex flex-col md:flex-row md:mt-16 space-y-4 md:space-y-0 lg:space-y-0 justify-between my-6'}>
+      <div className={'flex flex-col md:flex-row md:mt-16 space-y-4 md:space-y-0 lg:space-y-0 justify-between my-3'}>
         <div className={'flex flex-col md:w-56'}>
           <div className={'font-semibold text-sm'}>Email Address <span className={'text-red-600'} >*</span></div>
           <div><input type='email' placeholder='johndoe@gmail.com' className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
@@ -94,7 +94,7 @@ const PersonalDetails = ({ text, change }) => {
         </div>
       </div>
 
-      <div className={'flex justify-between my-6 z-40'}>
+      <div className={'flex justify-between my-3 z-40'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>Gender? <span className={'text-red-600'} >*</span></div>
           <div className={'flex flex-wrap -ml-3'}>
@@ -105,7 +105,7 @@ const PersonalDetails = ({ text, change }) => {
         </div>
       </div>
 
-      <div className={'flex justify-between my-6 z-40'}>
+      <div className={'flex justify-between my-3 z-40'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>Highest educational qualification <span className={'text-red-600'} >*</span></div>
           <div className={'flex flex-wrap -ml-3'}>
@@ -118,14 +118,14 @@ const PersonalDetails = ({ text, change }) => {
         </div>
       </div>
 
-      <div className={'flex justify-between my-6 w-full z-40'}>
+      <div className={'flex justify-between my-3 w-full z-40'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>State of residence (In Nigeria) <span className={'text-red-600'} >*</span></div>
           <div><input type='text' placeholder='Lagos' onChange={(e) => setLocation(e.target.value)} className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
         </div>
       </div>
 
-      <div className={'flex justify-between my-6 z-40'}>
+      <div className={'flex justify-between my-3 z-40'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm'}>What technical skill are you most interested in? <span className={'text-red-600'} >*</span></div>
           <div className={'flex flex-col flex-wrap  -ml-3'}>
@@ -163,11 +163,11 @@ const PersonalDetails = ({ text, change }) => {
       </div>
 
       <div className={'flex flex-col space-y-4 md:space-y-0 sm:w-1/2 mx-auto md:flex-row md:w-full font-bold  justify-around'}>
-        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600 hover:bg-white hover:text-blue-600'} onClick={() => change(1)}>
+        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-transparent  hover:cursor-pointer'} onClick={() => change(1)}>
           Previous
         </div>
 
-        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600 hover:bg-white hover:text-blue-600'} onClick={() => change(3)}>
+        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer '} onClick={() => change(3)}>
           Next
         </div>
       </div>

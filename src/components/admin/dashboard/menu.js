@@ -18,11 +18,11 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
   
   
   if(bgDash){
-    menuBg = 'bg-lightDash text-dark'
+    menuBg = 'bg-lightDash text-dark font-semibold'
     hoverBg = 'hover:bg-lightDashHov hover:text-dark'
   }
   else{
-    menuBg = 'bg-dark'
+    menuBg = 'bg-dark font-bold'
     hoverBg = 'hover:bg-blue-700 hover:text-white';
   }
 
@@ -49,7 +49,7 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
         <div className={'font-bold py-4 text-xl'}> Admin </div>
       </div>
 
-      <div className={'flex flex-col items-end text-2xl font-bold mr-0'}>
+      <div className={'flex flex-col items-end text-xl mr-0'}>
         <Link to='/overview' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${dashboard}`}>
           <Icon icon="ic:round-space-dashboard" className={'mx-1'} />  Dashboard
         </Link>

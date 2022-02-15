@@ -7,7 +7,7 @@ import GirlThumbUp from '../../assets/girlThumbUp.png';
 const LeftSide = ({pd}) => {
 
   return (
-    <div className={`h-full flex flex-col px-12 lg:px-20 p-20 bg-leftSide w-full lg:w-[42%] `}>
+    <div className={`h-2/3 lg:h-full flex flex-col px-12 lg:px-20 p-20 bg-leftSide w-full lg:w-[42%] `}>
       <div className={'flex justify-center  z-40'}>
         <Link to='/login'>
           <img src={Logo} alt='logo' className={'w-52'} />

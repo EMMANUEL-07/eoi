@@ -21,7 +21,7 @@ const Header = ({bgDash, setBgDash}) => {
         <Icon icon="bytesize:export" className={'text-xl mr-4'} /> Export
       </CsvDownload>
 
-      <div className={'flex items-center py-3 text-lg '}>
+      <div className={'flex items-center py-3 text-lg hover:cursor-pointer'}>
         <Badge className={'mx-4'} badgeContent='12' color='warning' >
           <Icon icon="carbon:notification" className={'mx-1 text-xl'} />
         </Badge>

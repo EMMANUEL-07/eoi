@@ -213,12 +213,12 @@ const Dashboard = ({bgDash}) => {
 
   return (
     <div className={`flex flex-col ${change} px-12 py-2 h-full`}>
-      <div className={'py-2 flex items-center justify-center'}>
+      <div className={'py-4 flex items-center justify-center'}>
         <div className={'text-2xl '}> Admin Dashboard / &nbsp; </div>
         <div className={'text-orangee'}> Expression of Interest  </div>
       </div>
 
-      <div className={'flex  w-full items-center'}>
+      <div className={'flex py-4 w-full items-center'}>
         <div className={'basis-1/2'}>
           <div className={'flex items-center py-1 px-8 mx-4 bg-white rounded-tl-xl rounded-br-xl'}>
             <Icon icon="akar-icons:search" className={'mx-1 text-2xl text-gray-600'} />
@@ -273,7 +273,7 @@ const Dashboard = ({bgDash}) => {
               }
             };
           }}
-          pagination={{ simple: true }}
+          pagination={{ simple: true, defaultPageSize: 10 }}
         />
 
         <Modal title={modalData.fullname} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: '#14147A', color: '#fff' }} closable cancelButtonProps={{ style: { display: 'none' } }}>

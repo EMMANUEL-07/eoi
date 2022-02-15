@@ -45,7 +45,7 @@ const RightSide = ({pd, setpd}) => {
       </div>
       </Tooltip>
       
-      <img src={Vector} alt='vector' className={`absolute top-0 right-0 -z-10 ${vector}`} />
+      <img src={Vector} alt='vector' className={`absolute top-0 right-0 -z-10 ${vector} w-6/12 md:w-3/12 lg:w-2/12`} />
       
       {pd === 1 && <FormIntro text={text} change={setpd} /> } 
       {pd === 2 && <PersonalDetails text={text} change={setpd} /> } 
