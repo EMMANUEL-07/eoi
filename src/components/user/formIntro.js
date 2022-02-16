@@ -20,7 +20,7 @@ const FormIntro = ({ text, change }) => {
     <div className={`md:h-full ${bg} flex flex-col mx-auto z-0 text-${text} py-12 md:py-6 px-10 sm:px-16 lg:px-24 text-base lg:text-lg  text-justify md:overflow-auto z-40 `}>
 
       <div className={'my-4 z-40'}>
-        <span className={'text-orangee font-bold'}>Hello dear,</span> <br /><br />
+        <span className={' text-orangee font-bold'}>Hello dear,</span> <br /><br />
         Nice to meet you. If you made it to this point, it shows you have an interest in founding your tech roots. Congratulations, you are in the right place.
       </div>
 
@@ -29,7 +29,7 @@ const FormIntro = ({ text, change }) => {
       </div>
 
       <div className={'my-4 z-40'}>
-        <div> Our mission is to: </div>
+        <div className={'text-orangee py-2'}> Our mission is to: </div>
         <div className={'flex '}>
           <GoCheck className='text-tick' size='32px' />
           <div className={'px-4 text-lg'}>Identify, mentor, and upskill obscure talents while aligning them with their skill sets and goals </div>
@@ -50,7 +50,7 @@ const FormIntro = ({ text, change }) => {
       </div>
 
       <div className={'flex w-full justify-center font-bold '}>
-        <div className={'mx-auto font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600 hover:bg-white hover:text-blue-600'} onClick={() => change(2)}>
+        <div className={'mx-auto font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer'} onClick={() => change(2)}>
           Next
         </div>
       </div>
