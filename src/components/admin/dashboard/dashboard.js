@@ -5,14 +5,14 @@ import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
 
-const Dashboard = ({bgDash}) => {
+const Dashboard = ({ bgDash }) => {
 
   let change = 'bg-dark text-white'
 
-  if(bgDash){
+  if (bgDash) {
     change = 'bg-lightDash text-dark'
   }
-  else{
+  else {
     change = 'bg-dark text-white'
   }
 
@@ -53,25 +53,20 @@ const Dashboard = ({bgDash}) => {
 
   const skillsData = [["Frontend", "Front end development"], ["UI/UX", "UI/UX design"], ["Backend", "Back end development"], ["DevOps", "DevOps"], ["QA Testing", "QA testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile application development"], ["Product Manager", "Technical Product Management - SCRUM MASTER"], ["Others", "Others"]]
 
+  /* const [dataT, setData] = useState([])
 
+  useEffect(() => {
+    axios("https://teaminnovation-endpoint.herokuapp.com/eoi-list/")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
 
-  const DataSet = axios
-    .get('https://teaminnovation-endpoint.herokuapp.com/eoi-list')
-    .then(result => {
-      // handle success
-      console.log('server', result);
-      return result;
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+      
+  }, []); */
 
-  console.log(DataSet)
-
+  // console.log(dataT);
+  
   const filterState = (data) => {
     if (states == '') {
       return data
@@ -89,7 +84,7 @@ const Dashboard = ({bgDash}) => {
     if (skill == '') {
       return data
     }
-    return data.filter(e => e.skills === skill)
+    return data.filter(e => e.skill === skill)
   }
 
 
@@ -104,7 +99,7 @@ const Dashboard = ({bgDash}) => {
   useEffect(() => {
     const filtered = filteredData(DummyData)
     setResources(filtered)
-    console.log(filtered)
+    console.log('filter', filtered)
   }, [DummyData, states, skill, education])
 
   const menu = (<Menu>
@@ -135,7 +130,7 @@ const Dashboard = ({bgDash}) => {
     },
     {
       title: 'Phone Number',
-      dataIndex: 'phoneNumber',
+      dataIndex: 'phone',
       render: (text) => <div className={`${change} p-1`}> {text} </div>
     },
     {
@@ -160,10 +155,10 @@ const Dashboard = ({bgDash}) => {
     },
     {
       title: 'Skill',
-      dataIndex: 'skills',
+      dataIndex: 'skill',
       sorter: (a, b) => {
-        const nameA = a.skills;
-        const nameB = b.skills;
+        const nameA = a.skill;
+        const nameB = b.skill;
 
         console.log(nameA)
 
@@ -180,10 +175,10 @@ const Dashboard = ({bgDash}) => {
     },
     {
       title: 'State',
-      dataIndex: 'state',
+      dataIndex: 'city',
       sorter: (a, b) => {
-        const nameA = a.state;
-        const nameB = b.state;
+        const nameA = a.city;
+        const nameB = b.city;
 
         console.log(nameA)
 
@@ -273,16 +268,16 @@ const Dashboard = ({bgDash}) => {
               }
             };
           }}
-          pagination={{ simple: true, defaultPageSize: 10 }}
+          pagination={{ simple: true, defaultPageSize: 8 }}
         />
 
-        <Modal title={modalData.fullname} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: '#14147A', color: '#fff' }} closable cancelButtonProps={{ style: { display: 'none' } }}>
+        <Modal title={modalData.email} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: '#14147A', color: '#fff' }} closable cancelButtonProps={{ style: { display: 'none' } }}>
 
           <div class={'text-xs'}>
             <div className={'font-semibold text-base text-center'}>Career Details</div>
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Skill:</span>
-              <span>{modalData.skills} </span>
+              <span>{modalData.skill} </span>
             </div>
             <div className={'flex items-center my-2'}>
               <div className={'basis-1/3 flex flex-col'}>
@@ -297,33 +292,33 @@ const Dashboard = ({bgDash}) => {
 
               <div className={'basis-1/3 flex flex-col'}>
                 <span className={'font-medium text-sm'}>Job Disclaimer:</span>
-                <span> {modalData.understand ? 'YES' : 'NO'} </span>
+                <span> {modalData.tnc ? 'YES' : 'NO'} </span>
               </div>
             </div>
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>GitHub:</span>
-              <span>{modalData.github} </span>
+              <span>{modalData.github_url} </span>
             </div>
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Projects:</span>
-              <span>{modalData.projects} </span>
+              <span>{modalData.projects_details} </span>
             </div>
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Most Challenging:</span>
-              <span>{modalData.mostChallenge} {modalData.mostChallenge} {modalData.mostChallenge} {modalData.mostChallenge} </span>
+              <span>{modalData.challenges} {modalData.challenges} {modalData.challenges} {modalData.challenges} </span>
             </div>
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Career Journey:</span>
-              <span>{modalData.journey} </span>
+              <span>{modalData.career_brief} </span>
             </div>
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Reason:</span>
-              <span>{modalData.reason} </span>
+              <span>{modalData.join_network} </span>
             </div>
 
           </div>
