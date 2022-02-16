@@ -36,14 +36,14 @@ const Header = ({ bgDash, setBgDash }) => {
  */
 
   return (
-    <div className={'flex justify-end  px-12 font-bold bg-white'}>
+    <div className={'flex justify-end px-12 font-bold bg-white'}>
 
       <CsvDownload
         data={DummyData}
         filename="Selected Resources"
         className={`flex font-bold px-8 py-2  my-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:cursor-pointer`}
       >
-        <Icon icon="bytesize:export" className={'text-xl mr-4'} /> Export
+        <Icon icon="bytesize:export" className={'text-xl md:mr-4'} /> <span className={'hidden md:block'}>Export </span>
       </CsvDownload>
 
       <div className={'flex items-center py-3 text-lg hover:cursor-pointer'}>

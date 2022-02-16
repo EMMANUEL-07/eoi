@@ -8,12 +8,25 @@ import axios from 'axios';
 const Dashboard = ({ bgDash }) => {
 
   let change = 'bg-dark text-white'
+  let modalBg = '#14147A'
+  let modalCol = '#14147A'
+  let bgCard = 'bg-darkCard'
+  let cardText = 'text-white'
+
 
   if (bgDash) {
     change = 'bg-lightDash text-dark'
+    modalBg = '#EDF1F7'
+    modalCol = '#14147A'
+    bgCard = 'bg-white'
+    cardText = 'text-dark'
   }
   else {
     change = 'bg-dark text-white'
+    modalBg = '#14147A'
+    modalCol = '#FFF'
+    bgCard = 'bg-darkCard'
+    cardText = 'text-white'
   }
 
   const [states, setState] = useState('');
@@ -66,7 +79,7 @@ const Dashboard = ({ bgDash }) => {
   }, []); */
 
   // console.log(dataT);
-  
+
   const filterState = (data) => {
     if (states == '') {
       return data
@@ -207,23 +220,23 @@ const Dashboard = ({ bgDash }) => {
   ];
 
   return (
-    <div className={`flex flex-col ${change} px-12 py-2 h-full`}>
+    <div className={`flex flex-col ${change} px-6 lg:px-12 py-4 lg:py-2 h-full overflow-auto`}>
       <div className={'py-4 flex items-center justify-center'}>
-        <div className={'text-2xl '}> Admin Dashboard / &nbsp; </div>
-        <div className={'text-orangee'}> Expression of Interest  </div>
+        <div className={'text-sm sm:text-xl  lg:text-2xl'}> Admin Dashboard / &nbsp; </div>
+        <div className={'text-xs sm:text-base text-orangee '}> Expression of Interest  </div>
       </div>
 
-      <div className={'flex py-4 w-full items-center'}>
-        <div className={'basis-1/2'}>
-          <div className={'flex items-center py-1 px-8 mx-4 bg-white rounded-tl-xl rounded-br-xl'}>
+      <div className={'flex flex-col lg:flex-row py-4 w-full items-center'}>
+        <div className={' lg:basis-1/2'}>
+          <div className={'flex items-center py-1 px-4 lg:px-8 mx-2 lg:mx-4 bg-white rounded-tl-xl rounded-br-xl'}>
             <Icon icon="akar-icons:search" className={'mx-1 text-2xl text-gray-600'} />
             <input type='text' placeholder='search' className={'w-full text-lg bg-transparent text-gray-600 border-b-2 border-white hover:border-blue-500 focus:border-blue-500 outline-none'} />
           </div>
         </div>
-        <div className={'basis-1/2 flex justify-between pl-8'}>
+        <div className={'basis-1/2 flex flex-col space-y-4 lg:space-y-0 lg:flex-row justify-between pl-0 lg:pl-8 pt-4 lg:pt-0'}>
           <div className={'flex items-center bg-orangee px-3 py-2 rounded-tr-lg rounded-bl-lg'}>
             <Icon icon="vaadin:date-input" className={'mx-1 text-xl text-white'} />
-            <select className={'bg-transparent text-white  outline-none'} onChange={(e) => handleState(e)}>
+            <select className={'bg-transparent text-white w-full  outline-none'} onChange={(e) => handleState(e)}>
               <option value="" className={'text-dark bg-white '} >State</option>
               {stateData.map(e => <option value={e} className={'text-dark bg-white '} >{e}</option>)}
             </select>
@@ -233,7 +246,7 @@ const Dashboard = ({ bgDash }) => {
 
           <div className={'flex items-center bg-orangee px-3 py-2 rounded-tr-lg rounded-bl-lg'}>
             <Icon icon="icon-park-outline:degree-hat" className={'mx-1 text-xl text-white'} />
-            <select className={'bg-transparent text-white outline-none'} onChange={(e) => handleEducation(e)}>
+            <select className={'bg-transparent text-white outline-none  w-full'} onChange={(e) => handleEducation(e)}>
               <option value="" className={'text-dark bg-white '} >Education</option>
               {educationData.map(e => <option value={e} className={'text-dark bg-white '} >{e}</option>)}
             </select>
@@ -242,7 +255,7 @@ const Dashboard = ({ bgDash }) => {
 
           <div className={'flex items-center bg-orangee px-3 py-2 rounded-tr-lg rounded-bl-lg'}>
             <Icon icon="mdi:weight-lifter" className={'mx-1 text-xl text-white'} />
-            <select className={'bg-transparent text-white  outline-none'} onChange={(e) => handleSkill(e)}>
+            <select className={'bg-transparent text-white  outline-none  w-full'} onChange={(e) => handleSkill(e)}>
               <option value="" className={'text-dark bg-white '} >Skill</option>
               {skillsData.map(e => <option value={e[1]} className={'text-dark bg-white '} >{e[0]}</option>)}
             </select>
@@ -256,9 +269,10 @@ const Dashboard = ({ bgDash }) => {
 
         <Table
           columns={tableColumns}
+          rowKey="id"
           dataSource={resources}
           size='small'
-          className={'bg-white text-white border-2 text-2xl'}
+          className={'bg-white text-white border-2 text-2xl hidden lg:contents '}
           rowClassName={`${change}`}
           onRow={(record, rowIndex) => {
             return {
@@ -271,7 +285,47 @@ const Dashboard = ({ bgDash }) => {
           pagination={{ simple: true, defaultPageSize: 8 }}
         />
 
-        <Modal title={modalData.email} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: '#14147A', color: '#fff' }} closable cancelButtonProps={{ style: { display: 'none' } }}>
+
+        <div className={`h-full lg:hidden flex flex-col overflow-auto`}>
+          {DummyData.map(e => (
+            <div className={`flex flex-col my-2 border-2 border-darkCard ${cardText}`}>
+              <div className={`w-full ${bgCard} text-dark px-2`}>
+                <div className={'flex justify-between py-1'}>
+                  <div className={'font-semibold'}>{e.email}</div>
+                  <div>{e.gender}</div>
+                </div>
+                <div className={'flex justify-between'}>
+                  <div>{e.state}</div>
+                  <div>
+                    <Dropdown overlay={menu} trigger={['click']}>
+                      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                        <Icon icon="clarity:ellipsis-horizontal-line" className={'mx-1 text-2xl text-gray-600'} />
+                      </a>
+                    </Dropdown>
+                  </div>
+                </div>
+              </div>
+
+              <div className={'flex justify-between px-2 py-1'}>
+                <div>Skill</div>
+                <div className={'font-medium'}>{e.skills}</div>
+              </div>
+
+              <div className={'flex justify-between px-2 py-1'}>
+                <div>Phone Number</div>
+                <div className={'font-medium'}>{e.phoneNumber}</div>
+              </div>
+            </div>)
+          )
+          }
+        </div>
+
+
+
+
+
+
+        <Modal title={modalData.email} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
 
           <div class={'text-xs'}>
             <div className={'font-semibold text-base text-center'}>Career Details</div>

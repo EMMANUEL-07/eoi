@@ -33,7 +33,7 @@ const LoginForm = ({ text }) => {
       
       <div className={`flex items-center text-lg lg:text-xl xl:text-2xl md:font-semibold my-4 lg:my-6 ${color} text-center py-1 lg:py-2 xl:py-3 px-4 lg:px-4 xl:px-12  border-4  hover:cursor-pointer hover:scale-105`}>
         <div className={'basis-1/5'} ><GrFacebook color='#277DFF' size='40' /></div>
-        <div className={'basis-4/5 md:basis-3/5 lg:basis-4/5'}>Sign in with Facebook</div>
+        <div className={'basis-4/5 md:basis-3/5 lg:basis-4/5'}>Sign in with LinkedIn</div>
       </div>
       
       <div className={`flex items-center text-lg lg:text-xl xl:text-2xl md:font-semibold my-4 lg:my-6 border-2 text-center py-1 lg:py-2 xl:py-3 px-4 lg:px-4 xl:px-12 bg-transparent hover:cursor-pointer hover:scale-105 ${google}`}>
