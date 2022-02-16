@@ -5,6 +5,7 @@ import { Avatar } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 import { Drawer } from 'antd';
+import { Tooltip } from '@mui/material';
 
 const Menu = ({ selected, bgDash, setBgDash }) => {
 
@@ -49,7 +50,7 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
   };
 
   return (
-    <div className={'bg-menu h-full  lg:py-8 text-white lg:rounded-tr-3xl '}>
+    <div className={'bg-menu min-h-[52px]  lg:py-8 text-white lg:rounded-tr-3xl '}>
       <div className={'flex-col items-center hidden lg:flex'} >
         <Avatar
           alt="Profile picture"
@@ -60,13 +61,13 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
       </div>
 
       <Drawer title="Menu" placement="left" onClose={onClose} visible={visible} className={'lg:hidden'}>
-        <Link to='/overview' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${dashboard}`}>
+        <Link to='/overview' className={`my-2  text-xl flex items-center justify-start p-2 w-4/5  rounded-3xl hover:cursor-pointer ${dashboard}`}>
           <Icon icon="ic:round-space-dashboard" className={'mx-1'} />  Dashboard
         </Link>
-        <Link to='/settings' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${account}`}>
+        <Link to='/settings' className={`my-2  text-xl flex items-center justify-start p-2 w-4/5  rounded-3xl hover:cursor-pointer ${account}`}>
           <Icon icon="clarity:settings-solid" className={'mx-1'} /> Account
         </Link>
-        <Link to='/login' className={`my-2 flex items-center justify-start p-2 w-4/5  rounded-l-3xl hover:cursor-pointer ${logout}`}>
+        <Link to='/login' className={`my-2  text-xl flex items-center justify-start p-2 w-4/5  rounded-3xl hover:cursor-pointer ${logout}`}>
           <Icon icon="ic:twotone-log-out" className={'mx-1'} /> Log Out
         </Link>
       </Drawer>
@@ -83,12 +84,15 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
         </Link>
       </div>
 
-      <div className={'flex mx-auto w-full items-center justify-between py-0 lg:justify-center mb-2 px-8 lg:px-0'}>
-        <div className={'lg:hidden'} onClick={() => showDrawer()}>
-          <Icon icon="ci:menu-alt-04" className={'mx-1 text-4xl text-white'} />
-        </div>
+      <div className={'flex mx-auto w-full items-center justify-between py-0 lg:justify-center px-8 lg:px-0'}>
+
+        <Tooltip title="Menu">
+          <div className={'lg:hidden'} onClick={() => showDrawer()}>
+            <Icon icon="ci:menu-alt-04" className={'mx-1 text-4xl text-white'} />
+          </div>
+        </Tooltip>
         <Link to='/' >
-          <img src={Logo} alt='logo' className={'lg:absolute bottom-8 w-40 xl:w-52'} />
+          <img src={Logo} alt='logo' className={'lg:absolute lg:left-1 lg:bottom-8 w-40 xl:w-52'} />
         </Link>
       </div>
 

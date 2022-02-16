@@ -36,7 +36,7 @@ const Header = ({ bgDash, setBgDash }) => {
  */
 
   return (
-    <div className={'flex justify-end  px-12 font-bold bg-white'}>
+    <div className={'flex justify-end px-12 font-bold bg-white'}>
 
       <CsvDownload
         data={DummyData}

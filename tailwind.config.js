@@ -23,6 +23,7 @@ module.exports = {
         tick: '#6385F9',
         lightDash: '#EDF1F7',
         lightDashHov: '#888',
+        darkCard: '#A6BEF0',
         captionRed: {
           1: 'rgba(255, 69, 0, 1)',
           2: 'rgba(255, 69, 0, 0.93)',
