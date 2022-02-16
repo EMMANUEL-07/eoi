@@ -7,6 +7,7 @@ import CareerDetails from './careerDetails';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
 import FormIntro from './formIntro';
 import FormEnd from './formEnd';
+import SkillDetails from './skillDetails';
 
 
 
@@ -40,17 +41,18 @@ const RightSide = ({pd, setpd}) => {
     <div className={`h-full ${bgc} py-6 lg:py-0 w-full lg:w-[58%] -z-0`}>
       
       <Tooltip title="Change theme">
-      <div onClick={() => setbg(!bg)} className={`absolute top-0 ${pd == 4 ?  'lg:right-[42%]' : 'lg:left-[42%]'} z-10 p-4`} >
+      <div onClick={() => setbg(!bg)} className={`absolute top-0 ${pd == 5 ?  'lg:right-[42%]' : 'lg:left-[42%]'} z-10 p-4`} >
         {bg ? <BsMoonStarsFill size='32' className='text-dark' /> : <BsSunFill size='36' className='text-yellow-500' />}
       </div>
       </Tooltip>
       
-      <img src={Vector} alt='vector' className={`absolute top-0 right-0 -z-10 ${vector} w-6/12 md:w-3/12 lg:w-2/12`} />
+      {/* <img src={Vector} alt='vector' className={`absolute top-2/3 right-0 -z-10 ${vector}  w-3/12 md:w-3/12 lg:w-2/12`} /> */}
       
       {pd === 1 && <FormIntro text={text} change={setpd} /> } 
       {pd === 2 && <PersonalDetails text={text} change={setpd} /> } 
-      {pd === 3 && <CareerDetails text={text} change={setpd} /> } 
-      {pd === 4 && <FormEnd text={text} /> } 
+      {pd === 3 && <SkillDetails text={text} change={setpd} /> } 
+      {pd === 4 && <CareerDetails text={text} change={setpd} /> } 
+      {pd === 5 && <FormEnd text={text} /> } 
 
     </div>
 

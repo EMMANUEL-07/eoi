@@ -58,8 +58,8 @@ const LoginForm = ({ text }) => {
       </div>
       
       <div className={'flex justify-center mt-10 font-bold px-36 '}>
-        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:cursor-pointer ${login}`}>
-          <Link to='/overview'> Login </Link>
+        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-opacity-50 hover:cursor-pointer ${login}`}>
+          <Link to='/overview' className={'hover:text-white'}> Login </Link>
         </div>
       </div>
     </div>
