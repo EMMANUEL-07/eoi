@@ -1,6 +1,7 @@
 import React from 'react';
 import Me from '../../../assets/EMMANUEL.jpg';
 import { Avatar } from '@mui/material';
+import SimpleReactValidator from 'simple-react-validator';
 
 const Profile = ({ bgDash }) => {
 
@@ -36,7 +37,7 @@ const Profile = ({ bgDash }) => {
 
       <div className={'flex flex-col lg:flex-row lg:h-full border border-primary rounded-2xl md:rounded-l-2xl'}>
 
-        <div className={`basis-1/4  flex flex-col  text-lg lg:text-2xl ${reverse} rounded-2xl`}>
+        <div className={`basis-1/4  flex flex-col  text-lg md:text-xl lg:text-2xl ${reverse} rounded-2xl`}>
           <div className={'flex flex-col w-full items-center'}>
             <div className={`lg:my-4 pt-2 flex flex-col items-center w-full  border-b-2 ${brdr}`} >
               <Avatar
@@ -47,14 +48,14 @@ const Profile = ({ bgDash }) => {
               <div className={'font-bold py-4 text-xl'}> John Doe </div>
             </div>
 
-            <div className={'flex flex-row lg:flex-col w-full'}>
-              <div className={`lg:my-1 xl:my-3 w-full flex items-center justify-start py-2 md:py-4 px-3 lg:px-12 border-r-2 lg:border-b-2 lg:border-r-0 ${brdr} hover:text-orangee `}>
+            <div className={'flex flex-row lg:flex-col w-full  md:font-semibold lg:text-base'}>
+              <div className={`lg:my-1 xl:my-3 w-full flex items-center justify-center lg:justify-start py-2 md:py-4 px-3 lg:px-12 border-r-2 lg:border-b-2 lg:border-r-0 ${brdr} hover:text-orangee `}>
                 Profile
               </div>
-              <div className={`lg:my-1 xl:my-3 w-full flex items-center justify-start py-2 md:py-4 px-3 lg:px-12 border-r-2 lg:border-b-2 lg:border-r-0 ${brdr} hover:text-orangee `}>
+              <div className={`lg:my-1 xl:my-3 w-full flex items-center justify-center lg:justify-start py-2 md:py-4 px-3 lg:px-12 border-r-2 lg:border-b-2 lg:border-r-0 ${brdr} hover:text-orangee `}>
                 Theme
               </div>
-              <div className={`lg:my-1 xl:my-3 w-full flex items-center justify-start py-2 md:py-4 px-3 lg:px-12 lg:border-b-2 lg:border-r-0 ${brdr} hover:text-orangee `}>
+              <div className={`lg:my-1 xl:my-3 w-full flex items-center justify-center lg:justify-start py-2 md:py-4 px-3 lg:px-12 lg:border-b-2 lg:border-r-0 ${brdr} hover:text-orangee `}>
                 Notifications
               </div>
             </div>

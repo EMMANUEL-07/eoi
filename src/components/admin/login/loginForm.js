@@ -1,7 +1,8 @@
 import React from 'react'
-import { GrFacebook } from 'react-icons/gr'
+import { GrLinkedin } from 'react-icons/gr'
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
+import SimpleReactValidator from 'simple-react-validator';
 
 
 const LoginForm = ({ text }) => {
@@ -32,7 +33,7 @@ const LoginForm = ({ text }) => {
       <div className={'text-2xl  xl:text-3xl mb-10 font-bold text-center'}>Login to your Dashboard</div>
       
       <div className={`flex items-center text-lg lg:text-xl xl:text-2xl md:font-semibold my-4 lg:my-6 ${color} text-center py-1 lg:py-2 xl:py-3 px-4 lg:px-4 xl:px-12  border-4  hover:cursor-pointer hover:scale-105`}>
-        <div className={'basis-1/5'} ><GrFacebook color='#277DFF' size='40' /></div>
+        <div className={'basis-1/5'} ><GrLinkedin color='#277DFF' size='40' /></div>
         <div className={'basis-4/5 md:basis-3/5 lg:basis-4/5'}>Sign in with LinkedIn</div>
       </div>
       
