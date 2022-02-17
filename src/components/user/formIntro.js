@@ -29,7 +29,7 @@ const FormIntro = ({ text, change }) => {
       </div>
 
       <div className={'my-4 z-40'}>
-        <div className={'text-orangee py-2'}> Our mission is to: </div>
+        <div className={'text-orangee py-2 font-semibold'}> Our mission is to: </div>
         <div className={'flex '}>
           <GoCheck className='text-tick' size='32px' />
           <div className={'px-4 text-lg'}>Identify, mentor, and upskill obscure talents while aligning them with their skill sets and goals </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Radio } from '@mui/material';
 import { blue } from '@mui/material/colors';
-
+import SimpleReactValidator from 'simple-react-validator';
 
 
 const SkillDetails = ({ text, change }) => {

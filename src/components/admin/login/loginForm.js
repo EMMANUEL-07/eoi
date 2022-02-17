@@ -2,6 +2,7 @@ import React from 'react'
 import { GrLinkedin } from 'react-icons/gr'
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
+import SimpleReactValidator from 'simple-react-validator';
 
 
 const LoginForm = ({ text }) => {
