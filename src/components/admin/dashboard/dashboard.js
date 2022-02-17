@@ -4,6 +4,7 @@ import DummyData from './MOCK_DATA.json';
 import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
+import  {skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText } from './constants'
 
 const Dashboard = ({ bgDash }) => {
 
@@ -33,7 +34,10 @@ const Dashboard = ({ bgDash }) => {
   const [education, setEducation] = useState('');
   const [skill, setSkill] = useState('');
   const [modalData, setModalData] = useState({})
-  const [resources, setResources] = useState(DummyData)
+  const [dataT, setData] = useState([])
+  const [resources, setResources] = useState([])
+  
+
   const handleState = (event) => {
     setState(event.target.value);
   };
@@ -60,13 +64,7 @@ const Dashboard = ({ bgDash }) => {
     setIsModalVisible(false);
   };
 
-  const stateData = ["Lagos", "Abuja", "Rivers", "Oyo", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Plateau", "Sokoto", "Taraba", "Yobe", "Zamfara"]
-
-  const educationData = ["SSCE", "OND", "HND", "BSC", "MSC"]
-
-  const skillsData = [["Frontend", "Front end development"], ["UI/UX", "UI/UX design"], ["Backend", "Back end development"], ["DevOps", "DevOps"], ["QA Testing", "QA testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile application development"], ["Product Manager", "Technical Product Management - SCRUM MASTER"], ["Others", "Others"]]
-
-  /* const [dataT, setData] = useState([])
+  
 
   useEffect(() => {
     axios("https://teaminnovation-endpoint.herokuapp.com/eoi-list/")
@@ -76,15 +74,17 @@ const Dashboard = ({ bgDash }) => {
       .catch((error) => console.error(`Error: ${error}`));
 
       
-  }, []); */
+  }, []);
 
-  // console.log(dataT);
+  console.log(dataT);
 
+
+  
   const filterState = (data) => {
     if (states == '') {
       return data
     }
-    return data.filter(e => e.state === states)
+    return data.filter(e => e.city === states)
   }
   const filterEducation = (data) => {
     if (education == '') {
@@ -110,10 +110,13 @@ const Dashboard = ({ bgDash }) => {
   }
 
   useEffect(() => {
-    const filtered = filteredData(DummyData)
+    const filtered = filteredData(dataT)
     setResources(filtered)
     console.log('filter', filtered)
-  }, [DummyData, states, skill, education])
+  }, [dataT, states, skill, education])
+
+
+  
 
   const menu = (<Menu>
     <Menu.Item>
@@ -164,7 +167,7 @@ const Dashboard = ({ bgDash }) => {
         //names being equal
         return 0;
       },
-      render: (text) => <div className={`${change} p-1`}> {text} </div>
+      render: (text) => <div className={`${change} p-1`}> {getText(text, genderA)} </div>
     },
     {
       title: 'Skill',
@@ -184,7 +187,7 @@ const Dashboard = ({ bgDash }) => {
         //names being equal
         return 0;
       },
-      render: (text) => <div className={`${change} p-1`}> {text} </div>
+      render: (text) => <div className={`${change} p-1`}> {getText(text, skillA)}  </div>
     },
     {
       title: 'State',
@@ -219,6 +222,8 @@ const Dashboard = ({ bgDash }) => {
     },
   ];
 
+
+  
   return (
     <div className={`flex flex-col ${change} px-6 lg:px-12 py-4 lg:py-2 h-full overflow-auto`}>
       <div className={'py-4 flex items-center justify-center'}>
@@ -226,14 +231,16 @@ const Dashboard = ({ bgDash }) => {
         <div className={'text-xs sm:text-base text-orangee '}> Expression of Interest  </div>
       </div>
 
-      <div className={'flex flex-col lg:flex-row py-4 w-full items-center'}>
-        <div className={' lg:basis-1/2'}>
+      <div className={'flex flex-col xl:flex-row py-4 w-full xl:items-center'}>
+        <div className={'lg:basis-2/5 lg:mb-3 xl:my-0 w-3/4 self-end'}>
           <div className={'flex items-center py-1 px-4 lg:px-8 mx-2 lg:mx-4 bg-white rounded-tl-xl rounded-br-xl'}>
             <Icon icon="akar-icons:search" className={'mx-1 text-2xl text-gray-600'} />
             <input type='text' placeholder='search' className={'w-full text-lg bg-transparent text-gray-600 border-b-2 border-white hover:border-blue-500 focus:border-blue-500 outline-none'} />
           </div>
         </div>
-        <div className={'basis-1/2 flex flex-col space-y-4 lg:space-y-0 lg:flex-row justify-between pl-0 lg:pl-8 pt-4 lg:pt-0'}>
+
+        <div className={'basis-3/5 w-full flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between pl-0 lg:pl-8 pt-4 lg:pt-0'}>
+          
           <div className={'flex items-center bg-orangee px-3 py-2 rounded-tr-lg rounded-bl-lg'}>
             <Icon icon="vaadin:date-input" className={'mx-1 text-xl text-white'} />
             <select className={'bg-transparent text-white w-full  outline-none'} onChange={(e) => handleState(e)}>
@@ -257,7 +264,7 @@ const Dashboard = ({ bgDash }) => {
             <Icon icon="mdi:weight-lifter" className={'mx-1 text-xl text-white'} />
             <select className={'bg-transparent text-white  outline-none  w-full'} onChange={(e) => handleSkill(e)}>
               <option value="" className={'text-dark bg-white '} >Skill</option>
-              {skillsData.map(e => <option value={e[1]} className={'text-dark bg-white '} >{e[0]}</option>)}
+              {skillData.map(e => <option value={e[1]} className={'text-dark bg-white '} >{e[0]}</option>)}
             </select>
 
           </div>
@@ -265,19 +272,19 @@ const Dashboard = ({ bgDash }) => {
         </div>
       </div>
 
-      <div className={'pt-4 text-white h-full'} >
+      <div className={'pt-4 lg:bg-white text-white lg:border-2 border-white '} >
 
         <Table
-          columns={tableColumns}
+          columns={tableColumns}  
           rowKey="id"
           dataSource={resources}
           size='small'
-          className={'bg-white text-white border-2 text-2xl hidden lg:contents '}
+          className={'bg-white text-white border-2 border-gray-500 text-2xl hidden lg:contents '}
           rowClassName={`${change}`}
           onRow={(record, rowIndex) => {
             return {
               onClick: event => {
-                setModalData(DummyData[record.id - 1])
+                setModalData(resources[record.id - 1])
                 showModal()
               }
             };
@@ -287,15 +294,15 @@ const Dashboard = ({ bgDash }) => {
 
 
         <div className={`h-full lg:hidden flex flex-col overflow-auto`}>
-          {DummyData.map(e => (
+          {resources.map(e => (
             <div className={`flex flex-col my-2 border-2 border-darkCard ${cardText}`}>
               <div className={`w-full ${bgCard} text-dark px-2`}>
-                <div className={'flex justify-between py-1'}>
+                <div className={'flex justify-between py-1 space-x-4'}>
                   <div className={'font-semibold'}>{e.email}</div>
                   <div>{e.gender}</div>
                 </div>
-                <div className={'flex justify-between'}>
-                  <div>{e.state}</div>
+                <div className={'flex justify-between space-x-4'}>
+                  <div>{e.city}</div>
                   <div>
                     <Dropdown overlay={menu} trigger={['click']}>
                       <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
@@ -306,14 +313,14 @@ const Dashboard = ({ bgDash }) => {
                 </div>
               </div>
 
-              <div className={'flex justify-between px-2 py-1'}>
+              <div className={'flex justify-between px-2 py-1 space-x-4'}>
                 <div>Skill</div>
-                <div className={'font-medium'}>{e.skills}</div>
+                <div className={'font-medium'}>{e.skill}</div>
               </div>
 
-              <div className={'flex justify-between px-2 py-1'}>
+              <div className={'flex justify-between px-2 py-1 space-x-4'}>
                 <div>Phone Number</div>
-                <div className={'font-medium'}>{e.phoneNumber}</div>
+                <div className={'font-medium'}>{e.phone}</div>
               </div>
             </div>)
           )
@@ -325,23 +332,23 @@ const Dashboard = ({ bgDash }) => {
 
 
 
-        <Modal title={modalData.email} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
+        <Modal title={modalData.fullname} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
 
           <div class={'text-xs'}>
             <div className={'font-semibold text-base text-center'}>Career Details</div>
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Skill:</span>
-              <span>{modalData.skill} </span>
+              <span>{getText( modalData.skill , skillA) } </span>
             </div>
             <div className={'flex items-center my-2'}>
               <div className={'basis-1/3 flex flex-col'}>
                 <span className={'font-medium text-sm'}>Skill Proficieny:</span>
-                <span>{modalData.knowlegde} </span>
+                <span>{ getText( modalData.knowledge , knowledgeA)} </span>
               </div>
 
               <div className={'basis-1/3 flex flex-col'}>
                 <span className={'font-medium text-sm'}>Education:</span>
-                <span>{modalData.education} </span>
+                <span>{ getText( modalData.education , educationA)} </span>
               </div>
 
               <div className={'basis-1/3 flex flex-col'}>
@@ -362,7 +369,7 @@ const Dashboard = ({ bgDash }) => {
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Most Challenging:</span>
-              <span>{modalData.challenges} {modalData.challenges} {modalData.challenges} {modalData.challenges} </span>
+              <span>{modalData.chanllenges} {modalData.chanllenges} {modalData.challenges} {modalData.challenges} </span>
             </div>
 
             <div className={'flex flex-col my-2'}>

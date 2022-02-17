@@ -23,7 +23,7 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
     hoverBg = 'hover:bg-lightDashHov hover:text-dark'
   }
   else {
-    menuBg = 'bg-dark font-bold'
+    menuBg = 'bg-dark text-white font-bold'
     hoverBg = 'hover:bg-blue-700 hover:text-white';
   }
 
@@ -50,7 +50,7 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
   };
 
   return (
-    <div className={'bg-menu min-h-[52px]  lg:py-8 text-white lg:rounded-tr-3xl '}>
+    <div className={'bg-menu min-h-[52px] lg:h-full  lg:py-8 text-white lg:rounded-tr-3xl '}>
       <div className={'flex-col items-center hidden lg:flex'} >
         <Avatar
           alt="Profile picture"
