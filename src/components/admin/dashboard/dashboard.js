@@ -4,7 +4,7 @@ import DummyData from './MOCK_DATA.json';
 import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
-import  {skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText } from './constants'
+import { skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText } from './constants'
 
 const Dashboard = ({ bgDash }) => {
 
@@ -36,7 +36,8 @@ const Dashboard = ({ bgDash }) => {
   const [modalData, setModalData] = useState({})
   const [dataT, setData] = useState([])
   const [resources, setResources] = useState([])
-  
+
+  const [deleted, setDelete] = useState(false)
 
   const handleState = (event) => {
     setState(event.target.value);
@@ -51,6 +52,7 @@ const Dashboard = ({ bgDash }) => {
   };
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalEdit, setIsModalEdit] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -58,13 +60,15 @@ const Dashboard = ({ bgDash }) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    setIsModalEdit(false);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setIsModalEdit(false);
   };
 
-  
+
 
   useEffect(() => {
     axios("https://teaminnovation-endpoint.herokuapp.com/eoi-list/")
@@ -72,14 +76,12 @@ const Dashboard = ({ bgDash }) => {
         setData(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-
-      
-  }, []);
+  }, [deleted]);
 
   console.log(dataT);
 
 
-  
+
   const filterState = (data) => {
     if (states == '') {
       return data
@@ -116,25 +118,39 @@ const Dashboard = ({ bgDash }) => {
   }, [dataT, states, skill, education])
 
 
-  
+  const deleteResource = (id) => {
+    axios.delete(`https://teaminnovation-endpoint.herokuapp.com/eoi-delete/${id}`)
+      .then((response) => {
+        console.log(response)
+        setDelete(!deleted)
+        console.log(deleted)
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }
 
-  const menu = (<Menu>
+
+  const menu = (record) => (<Menu>
     <Menu.Item>
-      <div className={'flex text-dark'} onClick={() => showModal()} >
+      <div
+        className={'flex text-dark'}
+        onClick={() => {
+          setModalData(resources.filter(e => e.id === record.id)[0])
+          showModal()
+        }}
+      >
         <Icon icon="carbon:view-filled" className={'mx-1 text-2xl  text-dark'} /> View
         </div>
     </Menu.Item>
     <Menu.Item>
-      <div className={'flex text-dark'}>
+      <div className={'flex text-dark'} onClick={() => setIsModalEdit(true)} >
         <Icon icon="ant-design:edit-outlined" className={'mx-1 text-2xl  text-dark'} /> Edit
         </div>
     </Menu.Item>
-    <Menu.Item className={'flex'} danger>
+    <Menu.Item className={'flex'} danger onClick={() => deleteResource(record.id)} >
       <div className={'flex'}>
         <Icon icon="ic:round-delete-forever" className={'mx-1 text-2xl text-red-500'} /> Delete
         </div>
     </Menu.Item>
-
   </Menu>
   );
 
@@ -142,12 +158,30 @@ const Dashboard = ({ bgDash }) => {
     {
       title: 'Email',
       dataIndex: 'email',
-      render: (text) => <div className={`${change} p-1`}> {text} </div>
+      render: (text, record) =>
+        <div
+          className={`${change} p-1`}
+          onClick={() => {
+            setModalData(resources.filter(e => e.id === record.id)[0])
+            showModal()
+          }}
+        >
+          {text}
+        </div>
     },
     {
       title: 'Phone Number',
       dataIndex: 'phone',
-      render: (text) => <div className={`${change} p-1`}> {text} </div>
+      render: (text, record) =>
+        <div
+          className={`${change} p-1`}
+          onClick={() => {
+            setModalData(resources.filter(e => e.id === record.id)[0])
+            showModal()
+          }}
+        >
+          {text}
+        </div>
     },
     {
       title: 'Gender',
@@ -167,7 +201,16 @@ const Dashboard = ({ bgDash }) => {
         //names being equal
         return 0;
       },
-      render: (text) => <div className={`${change} p-1`}> {getText(text, genderA)} </div>
+      render: (text, record) =>
+        <div
+          className={`${change} p-1`}
+          onClick={() => {
+            setModalData(resources.filter(e => e.id === record.id)[0])
+            showModal()
+          }}
+        >
+          {text}
+        </div>
     },
     {
       title: 'Skill',
@@ -187,7 +230,16 @@ const Dashboard = ({ bgDash }) => {
         //names being equal
         return 0;
       },
-      render: (text) => <div className={`${change} p-1`}> {getText(text, skillA)}  </div>
+      render: (text, record) =>
+        <div
+          className={`${change} p-1`}
+          onClick={() => {
+            setModalData(resources.filter(e => e.id === record.id)[0])
+            showModal()
+          }}
+        >
+          {text}
+        </div>
     },
     {
       title: 'State',
@@ -207,13 +259,22 @@ const Dashboard = ({ bgDash }) => {
         //names being equal
         return 0;
       },
-      render: (text) => <div className={`${change} p-1`}> {text} </div>
+      render: (text, record) =>
+        <div
+          className={`${change} p-1`}
+          onClick={() => {
+            setModalData(resources.filter(e => e.id === record.id)[0])
+            showModal()
+          }}
+        >
+          {text}
+        </div>
     },
     {
       title: '',
       dataIndex: 'dropdown',
-      render: (text) =>
-        <Dropdown overlay={menu}>
+      render: (text, record) =>
+        <Dropdown overlay={() => menu(record)}>
           <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
             <Icon icon="clarity:ellipsis-horizontal-line" className={'mx-1 text-2xl text-gray-600'} />
           </a>
@@ -223,7 +284,7 @@ const Dashboard = ({ bgDash }) => {
   ];
 
 
-  
+
   return (
     <div className={`flex flex-col ${change} px-6 lg:px-12 py-4 lg:py-2 h-full overflow-auto`}>
       <div className={'py-4 flex items-center justify-center'}>
@@ -240,7 +301,7 @@ const Dashboard = ({ bgDash }) => {
         </div>
 
         <div className={'basis-3/5 w-full flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between pl-0 lg:pl-8 pt-4 lg:pt-0'}>
-          
+
           <div className={'flex items-center bg-orangee px-3 py-2 rounded-tr-lg rounded-bl-lg'}>
             <Icon icon="vaadin:date-input" className={'mx-1 text-xl text-white'} />
             <select className={'bg-transparent text-white w-full  outline-none'} onChange={(e) => handleState(e)}>
@@ -275,20 +336,12 @@ const Dashboard = ({ bgDash }) => {
       <div className={'pt-4 lg:bg-white text-white lg:border-2 border-white '} >
 
         <Table
-          columns={tableColumns}  
+          columns={tableColumns}
           rowKey="id"
           dataSource={resources}
           size='small'
           className={'bg-white text-white border-2 border-gray-500 text-2xl hidden lg:contents '}
           rowClassName={`${change}`}
-          onRow={(record, rowIndex) => {
-            return {
-              onClick: event => {
-                setModalData(resources[record.id - 1])
-                showModal()
-              }
-            };
-          }}
           pagination={{ simple: true, defaultPageSize: 8 }}
         />
 
@@ -338,17 +391,17 @@ const Dashboard = ({ bgDash }) => {
             <div className={'font-semibold text-base text-center'}>Career Details</div>
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Skill:</span>
-              <span>{getText( modalData.skill , skillA) } </span>
+              <span>{modalData.skill} </span>
             </div>
             <div className={'flex items-center my-2'}>
               <div className={'basis-1/3 flex flex-col'}>
                 <span className={'font-medium text-sm'}>Skill Proficieny:</span>
-                <span>{ getText( modalData.knowledge , knowledgeA)} </span>
+                <span>{modalData.knowledge} </span>
               </div>
 
               <div className={'basis-1/3 flex flex-col'}>
                 <span className={'font-medium text-sm'}>Education:</span>
-                <span>{ getText( modalData.education , educationA)} </span>
+                <span>{modalData.education} </span>
               </div>
 
               <div className={'basis-1/3 flex flex-col'}>
@@ -369,7 +422,7 @@ const Dashboard = ({ bgDash }) => {
 
             <div className={'flex flex-col my-2'}>
               <span className={'font-medium text-sm'}>Most Challenging:</span>
-              <span>{modalData.chanllenges} {modalData.chanllenges} {modalData.challenges} {modalData.challenges} </span>
+              <span>{modalData.chanllenges} </span>
             </div>
 
             <div className={'flex flex-col my-2'}>
@@ -387,6 +440,65 @@ const Dashboard = ({ bgDash }) => {
 
 
         </Modal>
+
+
+
+        <Modal title={`Edit - ${modalData.fullname}`} visible={isModalEdit} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
+
+          <div class={'text-xs'}>
+            <div className={'font-semibold text-base text-center'}>Update Details</div>
+            <div className={'flex flex-col my-2'}>
+              <span className={'font-medium text-sm'}>Skill:</span>
+              <span>{modalData.skill} </span>
+            </div>
+            <div className={'flex items-center my-2'}>
+              <div className={'basis-1/3 flex flex-col'}>
+                <span className={'font-medium text-sm'}>Skill Proficieny:</span>
+                <span>{modalData.knowledge} </span>
+              </div>
+
+              <div className={'basis-1/3 flex flex-col'}>
+                <span className={'font-medium text-sm'}>Education:</span>
+                <span>{modalData.education} </span>
+              </div>
+
+              <div className={'basis-1/3 flex flex-col'}>
+                <span className={'font-medium text-sm'}>Job Disclaimer:</span>
+                <span> {modalData.tnc ? 'YES' : 'NO'} </span>
+              </div>
+            </div>
+
+            <div className={'flex flex-col my-2'}>
+              <span className={'font-medium text-sm'}>GitHub:</span>
+              <span>{modalData.github_url} </span>
+            </div>
+
+            <div className={'flex flex-col my-2'}>
+              <span className={'font-medium text-sm'}>Projects:</span>
+              <span>{modalData.projects_details} </span>
+            </div>
+
+            <div className={'flex flex-col my-2'}>
+              <span className={'font-medium text-sm'}>Most Challenging:</span>
+              <span>{modalData.chanllenges} </span>
+            </div>
+
+            <div className={'flex flex-col my-2'}>
+              <span className={'font-medium text-sm'}>Career Journey:</span>
+              <span>{modalData.career_brief} </span>
+            </div>
+
+            <div className={'flex flex-col my-2'}>
+              <span className={'font-medium text-sm'}>Reason:</span>
+              <span>{modalData.join_network} </span>
+            </div>
+
+          </div>
+
+
+
+        </Modal>
+  
 
       </div>
 
