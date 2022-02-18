@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 import { Drawer } from 'antd';
 import { Tooltip } from '@mui/material';
 
-const Menu = ({ selected, bgDash, setBgDash }) => {
+const Menu = ({ selected, bgDash }) => {
+
+  
 
   let menuBg = 'bg-dark'
   let hoverBg = 'hover:bg-blue-700 hover:text-white'
@@ -15,8 +17,6 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
   let dashboard = hoverBg;
   let account = hoverBg;
   let logout = hoverBg;
-
-
 
   if (bgDash) {
     menuBg = 'bg-lightDash text-dark font-semibold'
@@ -27,13 +27,13 @@ const Menu = ({ selected, bgDash, setBgDash }) => {
     hoverBg = 'hover:bg-blue-700 hover:text-white';
   }
 
-  if (selected == 'dashboard') {
+  if (selected === 'dashboard') {
     dashboard = `${menuBg} ${hoverBg}`;
     account = `${hoverBg}`;
     logout = `${hoverBg}`;
   }
 
-  if (selected == 'account') {
+  if (selected === 'account') {
     account = `${menuBg} ${hoverBg}`;
     dashboard = `${hoverBg}`;
     logout = `${hoverBg}`;

@@ -2,11 +2,9 @@ import React from 'react'
 import { GrLinkedin } from 'react-icons/gr'
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
-import SimpleReactValidator from 'simple-react-validator';
-
 
 const LoginForm = ({ text }) => {
-
+ 
   let color = 'bg-white text-black border-white'
   let forms = 'border-dark'
   let login= 'hover:border-primary hover:border-2'
@@ -59,8 +57,8 @@ const LoginForm = ({ text }) => {
       </div>
       
       <div className={'flex justify-center mt-8 font-bold px-36 '}>
-        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-opacity-50 hover:cursor-pointer ${login}`}>
-          <Link to='/overview' className={'hover:text-white'}> Login </Link>
+        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-opacity-50 hover:cursor-pointer ${login}hover:text-white`}>
+           <Link to='/overview' className={'hover:text-white'}> Login </Link>
         </div>
       </div>
     </div>

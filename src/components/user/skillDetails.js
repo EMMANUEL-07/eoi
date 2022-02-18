@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radio } from '@mui/material';
 import { blue } from '@mui/material/colors';
-import SimpleReactValidator from 'simple-react-validator';
+import validator from 'validator';
 
 
-const SkillDetails = ({ text, change }) => {
+const SkillDetails = ({ text, change, skillInfo, setSkillInfo }) => {
 
   let bg = 'bg-dark'
 
-  if (text == 'black') {
+  if (text === 'black') {
     bg = `bg-white`;
     text = `black`;
   }
@@ -17,18 +17,25 @@ const SkillDetails = ({ text, change }) => {
     text = `white`;
   }
 
-  const [selectedSkill, setSelectedSkill] = useState('');
-  const [selectedKnowledge, setSelectedKnowledge] = useState('');
-  const [challenge, setChallenge] = useState('');
+  const [selectedSkill, setSelectedSkill] = useState(skillInfo?.selectedSkill);
+  const [selectedKnowledge, setSelectedKnowledge] = useState(skillInfo?.selectedKnowledge);
+  const [challenge, setChallenge] = useState(skillInfo?.challenge);
+
+
+  const [skillValid, setSkillValid] = useState('');
+  const [knowledgeValid, setKnowledgeValid] = useState('');
+  const [challengeValid, setChallengeValid] = useState('');
+  
+  useEffect(() => {
+    console.log('validating')
+  }, [skillValid, knowledgeValid, challengeValid ])
 
   const handleSkill = (event) => {
     setSelectedSkill(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleKnowledge = (event) => {
     setSelectedKnowledge(event.target.value);
-    console.log(event.target.value);
   };
 
 
@@ -62,11 +69,30 @@ const SkillDetails = ({ text, change }) => {
     }
   });
 
+  const submitForm = () => {
+
+    setSkillValid(!validator.isEmpty(selectedSkill))
+    setKnowledgeValid(!validator.isEmpty(selectedKnowledge))
+    setChallengeValid(!validator.isEmpty(challenge) && validator.isLength(challenge,{min:2, max: 200}))
+
+    setSkillInfo({selectedSkill, selectedKnowledge, challenge})
+
+    if (skillValid && knowledgeValid && challengeValid) {
+      change(4)
+    }
+
+  }
   
 
   return (
     <div className={`md:h-full ${bg} flex flex-col mx-auto z-0 text-${text} py-12 px-10 sm:px-16 md:py-6   lg:px-24 text-base lg:text-lg md:overflow-auto z-40`}>
-      <div className={'flexn my-4 z-40 md:mt-16'}>
+      
+
+      <div className={'text-orangee font-bold text-2xl my-4 md:mt-16 lg:mt-8'} >
+        Skill Info
+      </div>
+
+      <div className={'flex justify-between my-4 lg:my-6 z-40'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm lg:text-base'}>What technical skill are you most interested in? <span className={'text-red-600'} >*</span></div>
           <div className={'flex flex-col flex-wrap  -ml-3'}>
@@ -100,6 +126,7 @@ const SkillDetails = ({ text, change }) => {
             </div>
 
           </div>
+          {skillValid === '' ? '' : skillValid ? '' : <div className={`text-red-500 text-xs`}>Please select your skill </div>}
         </div>
       </div>
 
@@ -111,6 +138,7 @@ const SkillDetails = ({ text, change }) => {
             <div className={'flex items-center pr-10'}> <Radio {...controlKnowledge('No')} /> No </div>
             <div className={'flex items-center pr-10'}> <Radio {...controlKnowledge('Still Learning')} /> Still Learning </div>
           </div>
+          {knowledgeValid === '' ? '' : knowledgeValid ? '' : <div className={`text-red-500 text-xs`}>Please select your skill level </div>}
         </div>
       </div>      
 
@@ -118,18 +146,21 @@ const SkillDetails = ({ text, change }) => {
       <div className={'flex my-4 z-40'}>
         <div className={'flex flex-col w-full'}>
           <div className={'font-semibold text-sm lg:text-base'}>What would you describe as most challenging in your selected field? <span className={'text-red-600'} >*</span></div>
-          <div><input type='text' required onChange={(e) => setChallenge(e.target.value)} className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} /></div>
+          <div>
+            <input type='text'defaultValue={skillInfo?.challenge} onChange={(e) => setChallenge(e.target.value)} className={'w-full bg-transparent text-base my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} />
+          </div>
+          {challengeValid === '' ? '' : challengeValid ? '' : <div className={`text-red-500 text-xs`}>Please state your challenges - Min:2, Max:200 </div>}
         </div>
       </div>
 
 
 
       <div className={'flex flex-col space-y-4 md:space-y-0 sm:w-1/2 mx-auto md:flex-row md:w-full font-bold text-center my-4 justify-around'}>
-        <div className={`font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 ${text == 'black' ? 'text-dark' :  'text-white'} bg-transparent  hover:cursor-pointer`} onClick={() => change(2)}>
+        <div className={`font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 ${text === 'black' ? 'text-dark' :  'text-white'} bg-transparent  hover:cursor-pointer`} onClick={() => change(2)}>
           Previous
         </div>
 
-        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer '} onClick={() => change(4)}>
+        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer '} onClick={() => submitForm()}>
           Next
         </div>
       </div>

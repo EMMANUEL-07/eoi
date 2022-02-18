@@ -7,17 +7,18 @@ import Register from './views/user/register';
 
 
 function App() {
+  
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/overview' element={<Overview />} />
-        
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/overview' element={<Overview />} />
+        </Routes>    
     </BrowserRouter>
-      
+
   );
 }
 
