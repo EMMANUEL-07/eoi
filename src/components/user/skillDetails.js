@@ -6,6 +6,7 @@ import validator from 'validator';
 
 const SkillDetails = ({ text, change, skillInfo, setSkillInfo }) => {
 
+  // Theme Logic
   let bg = 'bg-dark'
 
   if (text === 'black') {

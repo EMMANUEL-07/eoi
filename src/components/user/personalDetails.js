@@ -6,7 +6,7 @@ import validator from 'validator';
 
 const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
 
-
+// Theme Logic
   let bg = 'bg-dark'
 
   if (text === 'black') {
@@ -18,6 +18,7 @@ const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
     text = `white`;
   }
 
+  // Data input and validation Logic
   const [name, setName] = useState(personalInfo?.name);
   const [email, setEmail] = useState(personalInfo?.email);
   const [phone, setPhone] = useState(personalInfo?.phone);
@@ -75,6 +76,8 @@ const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
       }
     }
   });
+
+  // Data Submission and Validation
 
   const submitForm = () => {
 

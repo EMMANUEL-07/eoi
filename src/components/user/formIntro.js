@@ -5,6 +5,7 @@ import { GoCheck } from 'react-icons/go'
 
 const FormIntro = ({ text, change }) => {
 
+  // Theme Logic
   let bg = 'bg-dark'
 
   if (text === 'black') {

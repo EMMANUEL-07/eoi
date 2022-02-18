@@ -11,11 +11,14 @@ import SkillDetails from './skillDetails';
 
 const RightSide = ({pd, setpd}) => {
   
+
+  
   const [bg, setbg] = useState(false)
   const [personal, setPersonal] = useState({})
   const [skill, setSkill] = useState({})
   const [career, setCareer] = useState({})
 
+  // Theme Logic
   let bgc = `bg-dark`;
   let text = `white`;
 
