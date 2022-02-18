@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setCareerInfo }) => {
 
-
+  // Theme Logic
   let bg = 'bg-dark'
 
   if (text === 'black') {
@@ -19,6 +19,7 @@ const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setC
     text = `white`;
   }
 
+  // Data input and validation Logic
   const [selectedUnderstand, setSelectedUnderstand] = useState(careerInfo?.selectedUnderstand);
   const [pastProject, setPastProject] = useState(careerInfo?.pastProject);
   const [career, setCareer] = useState(careerInfo?.career);
@@ -51,7 +52,7 @@ const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setC
     }
   });
 
-
+  // Data Submission and Validation
   const sendData = () => {
     axios.post("https://teaminnovation-endpoint.herokuapp.com/eoi-create/", {
       fullname: personalInfo.name,

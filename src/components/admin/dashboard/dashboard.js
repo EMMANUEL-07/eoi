@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
-import { skillData, educationA, educationData, stateData,  skillEdit, learningEdit } from './constants'
+import { skillData, educationA, educationData, stateData, skillEdit, learningEdit } from './constants'
 import validator from 'validator';
 
 const Dashboard = ({ bgDash, setDataExp }) => {
@@ -15,7 +15,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
   let bgCard = 'bg-darkCard'
   let cardText = 'text-white'
 
-  
+
   if (bgDash) {
     change = 'bg-lightDash text-dark'
     modalBg = '#EDF1F7'
@@ -123,7 +123,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
       .catch((error) => console.error(`Error: ${error}`));
   }, [deleted, edited]);
 
-  
+
 
 
   //filter logic
@@ -168,12 +168,12 @@ const Dashboard = ({ bgDash, setDataExp }) => {
       .then((response) => {
         console.log(response)
         setDelete(!deleted)
-        
+
       })
       .catch((error) => console.error(`Error: ${error}`));
   }
 
-//dropdown and logic
+  //dropdown and table logic
   const menu = (record) => (<Menu>
     <Menu.Item>
       <div
@@ -241,7 +241,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         const nameA = a.gender;
         const nameB = b.gender;
 
-        
+
 
         if (nameA < nameB) {
           return -1;
@@ -270,7 +270,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         const nameA = a.skill;
         const nameB = b.skill;
 
-        
+
 
         if (nameA < nameB) {
           return -1;
@@ -299,7 +299,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         const nameA = a.city;
         const nameB = b.city;
 
-        
+
 
         if (nameA < nameB) {
           return -1;
@@ -325,7 +325,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
       title: '',
       dataIndex: 'dropdown',
       render: (text, record) =>
-        <Dropdown overlay={() => menu(record)} trigger={[ 'hover', 'click']}>
+        <Dropdown overlay={() => menu(record)} trigger={['hover', 'click']}>
           <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
             <Icon icon="clarity:ellipsis-horizontal-line" className={'mx-1 text-2xl text-gray-600'} />
           </a>
@@ -333,16 +333,16 @@ const Dashboard = ({ bgDash, setDataExp }) => {
 
     },
   ];
-
+  // Data submission and validation
   const sendData = (id) => {
     axios.post(`https://teaminnovation-endpoint.herokuapp.com/eoi-update/${id}/`, {
-      fullname: name ?  name : modify.fullname,
-      education: selectedQualification ?  selectedQualification : modify.education,
-      skill: selectedSkill ?  selectedSkill : modify.skill,
-      knowledge: selectedKnowledge ?  selectedKnowledge : modify.knowledge,
+      fullname: name ? name : modify.fullname,
+      education: selectedQualification ? selectedQualification : modify.education,
+      skill: selectedSkill ? selectedSkill : modify.skill,
+      knowledge: selectedKnowledge ? selectedKnowledge : modify.knowledge,
       city: location ? location : modify.city,
       phone: phone ? phone : modify.phone,
-      github_url: gitHub ?  gitHub : modify.github_url,
+      github_url: gitHub ? gitHub : modify.github_url,
       email: modify.email,
       challenges: modify.challenges,
       projects_details: modify.projects_details,
@@ -361,7 +361,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
 
   const submitForm = (id) => {
 
-    
+
 
     name === undefined ? setNameValid(true) : setNameValid(validator.isLength(name, { min: 2, max: 50 }))
     phone === undefined ? setPhoneValid(true) : setPhoneValid(validator.isMobilePhone(phone))
@@ -432,6 +432,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
 
       <div className={'pt-4 lg:bg-white text-white lg:border-2 border-white '} >
 
+        {/* Table Render */}
         <Table
           columns={tableColumns}
           rowKey="id"
@@ -442,7 +443,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
           pagination={{ simple: true, defaultPageSize: 8 }}
         />
 
-
+        {/* Mobile info render */}
         <div className={`h-full lg:hidden flex flex-col overflow-auto`}>
           {resources.map(e => (
             <div className={`flex flex-col my-2 border-2 border-darkCard ${cardText}`}>
@@ -478,10 +479,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         </div>
 
 
-
-
-
-
+        {/* Modal for viewing */}
         <Modal title={modalData.fullname} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
 
           <div class={'text-xs'}>
@@ -536,7 +534,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         </Modal>
 
 
-
+        {/* Modal for editting */}
         <Modal title={`Edit - ${modify.fullname}`} visible={isModalEdit} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
 
           <div class={'text-xs'}>

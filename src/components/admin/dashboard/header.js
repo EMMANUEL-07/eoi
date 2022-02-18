@@ -11,7 +11,7 @@ const Header = ({ bgDash, setBgDash, sel, dataExp }) => {
   return (
     <div className={'flex justify-end px-12 font-bold bg-white'}>
 
-      
+      {/* Conditional export render */}
       { sel ? 
       <CsvDownload
         data={dataExp}

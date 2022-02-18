@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 const LoginForm = ({ text }) => {
  
+  // Theme Logic
   let color = 'bg-white text-black border-white'
   let forms = 'border-dark'
   let login= 'hover:border-primary hover:border-2'

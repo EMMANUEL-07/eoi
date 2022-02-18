@@ -5,6 +5,7 @@ import React from 'react';
 
 const FormEnd = ({ text }) => {
 
+  // Theme Logic
   let color = 'text-orangee';
   let bg = 'bg-dark'
 
