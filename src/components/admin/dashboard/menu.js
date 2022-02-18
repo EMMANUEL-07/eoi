@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Drawer } from 'antd';
 import { Tooltip } from '@mui/material';
 
-const Menu = ({ selected, bgDash, setBgDash }) => {
+const Menu = ({ selected, bgDash }) => {
 
   
 

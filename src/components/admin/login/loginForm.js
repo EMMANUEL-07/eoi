@@ -2,22 +2,9 @@ import React, { useState, useContext} from 'react'
 import { GrLinkedin } from 'react-icons/gr'
 import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
-import SimpleReactValidator from 'simple-react-validator';
-import AuthContext from "../../../context/AuthContext";
-
 
 const LoginForm = ({ text }) => {
-
-  let { loginUser } = useContext(AuthContext);
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const access = () => {
-    console.log(email, password)
-    loginUser({email,password})
-  }
-
+ 
   let color = 'bg-white text-black border-white'
   let forms = 'border-dark'
   let login= 'hover:border-primary hover:border-2'
@@ -61,17 +48,16 @@ const LoginForm = ({ text }) => {
       
       <div className={'my-2 lg:my-3  items-start w-full'}>
         <div className={'font-semibold text-lg py-3'}>Email <span className={'text-red-600'} >*</span></div>
-        <div><input type='email' placeholder='johndoe@gmail.com'onChange={(e) => setEmail(e.target.value)} className={`w-full bg-transparent outline-none border-b-2 ${forms} hover:border-blue-500 focus:border-blue-500`} /></div>
+        <div><input type='email' placeholder='johndoe@gmail.com' className={`w-full bg-transparent outline-none border-b-2 ${forms} hover:border-blue-500 focus:border-blue-500`} /></div>
       </div>
       
       <div className={'my-2 lg:my-3 items-start w-full'}>
         <div className={'font-semibold text-lg py-3'}>Password <span className={'text-red-600'} >*</span></div>
-        <div><input type='password' placeholder='*******8q' onChange={(e) => setPassword(e.target.value)}  className={`w-full bg-transparent outline-none border-b-2 ${forms} hover:border-blue-500 focus:border-blue-500`}/></div>
+        <div><input type='password' placeholder='*******8q'  className={`w-full bg-transparent outline-none border-b-2 ${forms} hover:border-blue-500 focus:border-blue-500`}/></div>
       </div>
       
       <div className={'flex justify-center mt-8 font-bold px-36 '}>
-        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-opacity-50 hover:cursor-pointer ${login}hover:text-white`} /* onClick={() => access()} */>
-           
+        <div className={`font-bold px-10 py-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-opacity-50 hover:cursor-pointer ${login}hover:text-white`}>
            <Link to='/overview' className={'hover:text-white'}> Login </Link>
         </div>
       </div>

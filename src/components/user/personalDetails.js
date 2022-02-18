@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Radio } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import { stateData } from '../admin/dashboard/constants'
-import SimpleReactValidator from 'simple-react-validator';
 import validator from 'validator';
 
 const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
@@ -35,18 +34,16 @@ const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
 
   useEffect(() => {
 
-    console.log('validate')
+    console.log('validating')
 
   }, [nameValid, emailValid, phoneValid, locationValid, selectedGenderValid, selectedQualificationValid])
 
   const handleGender = (event) => {
     setSelectedGender(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleQualification = (event) => {
     setSelectedQualification(event.target.value);
-    console.log(event.target.value);
   };
 
 
@@ -87,11 +84,6 @@ const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
     setLocationValid(!validator.isEmpty(location))
     setSelectedGendeValid(!validator.isEmpty(selectedGender))
     setSelectedQualificationValid(!validator.isEmpty(selectedQualification))
-
-
-
-    console.log(name, email, phone, location, selectedGender, selectedQualification)
-    console.log(nameValid, emailValid, phoneValid, locationValid, selectedGenderValid, selectedQualificationValid)
 
     setPersonalInfo({name, email, phone, location, gender: selectedGender, education: selectedQualification})
 
@@ -175,7 +167,7 @@ const PersonalDetails = ({ text, change, personalInfo, setPersonalInfo }) => {
           Previous
         </div>
 
-        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer hover:opacity-80'} /* onClick={() => change(3) */ onClick={() => submitForm()}>
+        <div className={'font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer hover:opacity-80'} onClick={() => submitForm()}>
           Next
         </div>
       </div>

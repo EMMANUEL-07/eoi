@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Tooltip } from '@mui/material';
-import Vector from '../../../assets/Vector.png'
 import LoginForm from './loginForm';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
 
@@ -31,7 +30,7 @@ const RightSideAdmin = () => {
         </div>
       </Tooltip>
 
-      {/* <img src={Vector} alt='vector' className={'absolute top-0 right-0 -z-10'} /> */}
+      
 
       <LoginForm text={text} />
     </div>

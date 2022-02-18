@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Tooltip} from '@mui/material';
 import PersonalDetails from './personalDetails';
-import Vector from '../../assets/Vector.png'
-// import Vector2 from '../../assets/Vector2.png'
 import CareerDetails from './careerDetails';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
 import FormIntro from './formIntro';
@@ -47,8 +45,6 @@ const RightSide = ({pd, setpd}) => {
         {bg ? <BsMoonStarsFill size='32' className='text-dark' /> : <BsSunFill size='36' className='text-yellow-500' />}
       </div>
       </Tooltip>
-      
-      {/* <img src={Vector} alt='vector' className={`absolute top-2/3 right-0 -z-10 ${vector}  w-3/12 md:w-3/12 lg:w-2/12`} /> */}
       
       {pd === 1 && <FormIntro text={text} change={setpd} /> } 
       {pd === 2 && <PersonalDetails text={text} change={setpd} personalInfo={personal} setPersonalInfo={setPersonal} /> } 

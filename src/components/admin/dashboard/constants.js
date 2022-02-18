@@ -78,7 +78,7 @@ export const stateData = ["Lagos", "Abuja", "Rivers", "Oyo", "Abia", "Adamawa", 
 
 export const educationData = ["SSCE", "OND", "HND", "BSC", "MSC"]
 
-export const skillData = [["Frontend", "Front end development"], ["UI/UX", "UI/UX"], ["Backend", "Back end development"], ["DevOps", "DevOps"], ["QA Testing", "QA testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile application development"], ["Product Manager", "Technical Product Management - SCRUM MASTER"], ["Others", "Others"]]
+export const skillData = [["Frontend", "Frontend Development"], ["UI/UX", "UI/UX"], ["Backend", "Backend Development"], ["DevOps", "DevOps"], ["QA Testing", "QA Testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile Application Development"], ["Product Manager", "Technical Product Manager SCRUM Master"], ["Others", "Others"]]
 
 export const skillEdit = ["Frontend Development" , "UI/UX", "Backend Development", "DevOps", "QA Testing", "Data Science", "Mobile Application Development", "Technical Product Manager SCRUM Master", "Others"]
 

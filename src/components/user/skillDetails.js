@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Radio } from '@mui/material';
 import { blue } from '@mui/material/colors';
-import SimpleReactValidator from 'simple-react-validator';
 import validator from 'validator';
 
 
@@ -28,17 +27,15 @@ const SkillDetails = ({ text, change, skillInfo, setSkillInfo }) => {
   const [challengeValid, setChallengeValid] = useState('');
   
   useEffect(() => {
-    console.log('validate')
+    console.log('validating')
   }, [skillValid, knowledgeValid, challengeValid ])
 
   const handleSkill = (event) => {
     setSelectedSkill(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleKnowledge = (event) => {
     setSelectedKnowledge(event.target.value);
-    console.log(event.target.value);
   };
 
 
@@ -77,9 +74,6 @@ const SkillDetails = ({ text, change, skillInfo, setSkillInfo }) => {
     setSkillValid(!validator.isEmpty(selectedSkill))
     setKnowledgeValid(!validator.isEmpty(selectedKnowledge))
     setChallengeValid(!validator.isEmpty(challenge) && validator.isLength(challenge,{min:2, max: 200}))
-
-    console.log(selectedSkill, selectedKnowledge, challenge)
-    console.log(skillValid, knowledgeValid, challengeValid)
 
     setSkillInfo({selectedSkill, selectedKnowledge, challenge})
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Radio } from '@mui/material';
 import { blue } from '@mui/material/colors';
-import SimpleReactValidator from 'simple-react-validator';
 import validator from 'validator';
 import axios from 'axios';
 
@@ -35,7 +34,6 @@ const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setC
 
   const handleUnderstand = (event) => {
     setSelectedUnderstand(event.target.value);
-    console.log(event.target.value);
   };
 
 
@@ -85,11 +83,7 @@ const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setC
     setGitHubValid(validator.isURL(gitHub))
     setWhyJoinValid(!validator.isEmpty(whyJoin) && validator.isLength(whyJoin, { min: 2, max: 200 }))
 
-    console.log(pastProject, career, gitHub, whyJoin, selectedUnderstand)
-    console.log(pastProjectValid, careerValid, gitHubValid, whyJoinValid, understandValid)
-
     setCareerInfo({pastProject, career, gitHub, whyJoin, selectedUnderstand})
-
 
     if (pastProjectValid && careerValid && gitHubValid && whyJoinValid && understandValid) {
       sendData()

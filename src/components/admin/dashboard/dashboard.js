@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import DummyData from './MOCK_DATA.json';
 import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
-import { skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText, skillEdit, learningEdit } from './constants'
+import { skillData, educationA, educationData, stateData,  skillEdit, learningEdit } from './constants'
 import validator from 'validator';
 
 const Dashboard = ({ bgDash, setDataExp }) => {
@@ -117,7 +116,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
       .catch((error) => console.error(`Error: ${error}`));
   }, [deleted, edited]);
 
-  console.log(dataT);
+  
 
 
 
@@ -162,7 +161,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
       .then((response) => {
         console.log(response)
         setDelete(!deleted)
-        console.log(deleted)
+        
       })
       .catch((error) => console.error(`Error: ${error}`));
   }
@@ -235,7 +234,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         const nameA = a.gender;
         const nameB = b.gender;
 
-        console.log(nameA)
+        
 
         if (nameA < nameB) {
           return -1;
@@ -264,7 +263,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         const nameA = a.skill;
         const nameB = b.skill;
 
-        console.log(nameA)
+        
 
         if (nameA < nameB) {
           return -1;
@@ -293,7 +292,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
         const nameA = a.city;
         const nameB = b.city;
 
-        console.log(nameA)
+        
 
         if (nameA < nameB) {
           return -1;
@@ -355,7 +354,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
 
   const submitForm = (id) => {
 
-    console.log(modify)
+    
 
     name === undefined ? setNameValid(true) : setNameValid(validator.isLength(name, { min: 2, max: 50 }))
     phone === undefined ? setPhoneValid(true) : setPhoneValid(validator.isMobilePhone(phone))
@@ -372,13 +371,6 @@ const Dashboard = ({ bgDash, setDataExp }) => {
     setPastProjectValid(true)
     setCareerValid(true)
     setWhyJoinValid(true)
-
-    console.log(name, email, phone, location, selectedGender, selectedQualification)
-    console.log(nameValid, emailValid, phoneValid, locationValid, selectedGenderValid, selectedQualificationValid)
-    console.log(selectedSkill, selectedKnowledge, challenge)
-    console.log(skillValid, knowledgeValid, challengeValid)
-    console.log(pastProject, career, gitHub, whyJoin, selectedUnderstand)
-    console.log(pastProjectValid, careerValid, gitHubValid, whyJoinValid, understandValid)
 
     if (nameValid && emailValid && phoneValid && locationValid && selectedGenderValid && selectedQualificationValid && pastProjectValid && careerValid && gitHubValid && whyJoinValid && understandValid && skillValid && knowledgeValid && challengeValid) {
       sendData(id)
@@ -418,7 +410,6 @@ const Dashboard = ({ bgDash, setDataExp }) => {
               <option value="" className={'text-dark bg-white '} >Education</option>
               {educationData.map(e => <option value={e} className={'text-dark bg-white '} >{e}</option>)}
             </select>
-
           </div>
 
           <div className={'flex items-center bg-orangee px-3 py-2 rounded-tr-lg rounded-bl-lg'}>
@@ -427,7 +418,6 @@ const Dashboard = ({ bgDash, setDataExp }) => {
               <option value="" className={'text-dark bg-white '} >Skill</option>
               {skillData.map(e => <option value={e[1]} className={'text-dark bg-white '} >{e[0]}</option>)}
             </select>
-
           </div>
 
         </div>
@@ -457,7 +447,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
                 <div className={'flex justify-between space-x-4'}>
                   <div>{e.city}</div>
                   <div>
-                    <Dropdown overlay={menu} trigger={['click', 'hover']}>
+                    <Dropdown overlay={() => menu(e)} trigger={['click', 'hover']}>
                       <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                         <Icon icon="clarity:ellipsis-horizontal-line" className={'mx-1 text-2xl text-gray-600'} />
                       </a>
@@ -536,9 +526,6 @@ const Dashboard = ({ bgDash, setDataExp }) => {
             </div>
 
           </div>
-
-
-
         </Modal>
 
 
