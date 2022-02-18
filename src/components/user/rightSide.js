@@ -19,14 +19,6 @@ const RightSide = ({pd, setpd}) => {
   let bgc = `bg-dark`;
   let text = `white`;
 
-  let vector = '';
-
-  if(pd == 4){
-    vector = 'lg:left-0 lg:z-10 lg:rotator'
-  }
-  else {
-    vector = ''
-  }
 
   if (bg) {
     bgc = `bg-white`;
@@ -41,7 +33,7 @@ const RightSide = ({pd, setpd}) => {
     <div className={`h-full ${bgc} py-6 lg:py-0 w-full lg:w-[58%] -z-0`}>
       
       <Tooltip title="Change theme">
-      <div onClick={() => setbg(!bg)} className={`absolute top-0  right-0 ${pd == 5 ?  'lg:left-0  ' : 'lg:left-[42%]'} z-10 p-4`} >
+      <div onClick={() => setbg(!bg)} className={`absolute top-0  right-0 ${pd === 5 ?  'lg:left-0  ' : 'lg:left-[42%]'} z-10 p-4`} >
         {bg ? <BsMoonStarsFill size='32' className='text-dark' /> : <BsSunFill size='36' className='text-yellow-500' />}
       </div>
       </Tooltip>

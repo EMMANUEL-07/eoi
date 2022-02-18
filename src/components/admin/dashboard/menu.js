@@ -27,13 +27,13 @@ const Menu = ({ selected, bgDash }) => {
     hoverBg = 'hover:bg-blue-700 hover:text-white';
   }
 
-  if (selected == 'dashboard') {
+  if (selected === 'dashboard') {
     dashboard = `${menuBg} ${hoverBg}`;
     account = `${hoverBg}`;
     logout = `${hoverBg}`;
   }
 
-  if (selected == 'account') {
+  if (selected === 'account') {
     account = `${menuBg} ${hoverBg}`;
     dashboard = `${hoverBg}`;
     logout = `${hoverBg}`;

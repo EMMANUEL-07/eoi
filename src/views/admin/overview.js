@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import Dashboard from '../../components/admin/dashboard/dashboard'
 import Header from '../../components/admin/dashboard/header'
 import Menu from '../../components/admin/dashboard/menu'
-import Profile from '../../components/admin/dashboard/profile'
 
 const Overview = () => {
 

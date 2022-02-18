@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Icon } from '@iconify/react';
 import { Badge } from '@mui/material';
 import CsvDownload from 'react-json-to-csv'
-import DummyData from './MOCK_DATA.json';
 import { Tooltip } from '@mui/material';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
-import axios from 'axios';
+
 
 const Header = ({ bgDash, setBgDash, sel, dataExp }) => {  
 

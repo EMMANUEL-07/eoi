@@ -10,7 +10,7 @@ const Register = () => {
   let reverse = 'lg:flex-row-reverse'
 
   return (
-    <div className={`h-screen flex flex-col lg:flex-row absolute w-full ${pd == 5 ? reverse : ''}`}>
+    <div className={`h-screen flex flex-col lg:flex-row absolute w-full ${pd === 5 ? reverse : ''}`}>
       <LeftSide pd={pd} />
       <MiddleSide pd={pd} />
       <RightSide pd={pd} setpd={setpd} /> 

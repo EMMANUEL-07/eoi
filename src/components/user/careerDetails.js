@@ -10,7 +10,7 @@ const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setC
 
   let bg = 'bg-dark'
 
-  if (text == 'black') {
+  if (text === 'black') {
     bg = `bg-white`;
     text = `black`;
   }
@@ -155,7 +155,7 @@ const CareerDetails = ({ text, change, personalInfo, skillInfo, careerInfo, setC
       </div>
 
       <div className={'flex flex-col space-y-4 md:space-y-0 sm:w-1/2 mx-auto md:flex-row md:w-full font-bold text-center my-4 lg:my-4 justify-around'}>
-        <div className={`font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 ${text == 'black' ? 'text-dark' : 'text-white'} bg-transparent hover:cursor-pointer`} onClick={() => change(3)}>
+        <div className={`font-bold px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 ${text === 'black' ? 'text-dark' : 'text-white'} bg-transparent hover:cursor-pointer`} onClick={() => change(3)}>
           Previous
         </div>
 

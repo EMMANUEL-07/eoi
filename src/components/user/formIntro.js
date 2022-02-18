@@ -7,7 +7,7 @@ const FormIntro = ({ text, change }) => {
 
   let bg = 'bg-dark'
 
-  if (text == 'black') {
+  if (text === 'black') {
     bg = `bg-white`;
     text = `black`;
   }

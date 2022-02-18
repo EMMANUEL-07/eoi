@@ -8,13 +8,33 @@ import validator from 'validator';
 
 const Dashboard = ({ bgDash, setDataExp }) => {
 
+  //Theme
   let change = 'bg-dark text-white'
   let modalBg = '#14147A'
   let modalCol = '#14147A'
   let bgCard = 'bg-darkCard'
   let cardText = 'text-white'
 
+  
+  if (bgDash) {
+    change = 'bg-lightDash text-dark'
+    modalBg = '#EDF1F7'
+    modalCol = '#14147A'
+    bgCard = 'bg-white'
+    cardText = 'text-dark'
+  }
+  else {
+    change = 'bg-dark text-white'
+    modalBg = '#14147A'
+    modalCol = '#FFF'
+    bgCard = 'bg-darkCard'
+    cardText = 'text-white'
+  }
+
+
   const [modify, setModify] = useState({});
+
+  //Input states and validation
 
   const [name, setName] = useState(modify?.fullname);
   const [email, setEmail] = useState(modify?.email);
@@ -52,21 +72,6 @@ const Dashboard = ({ bgDash, setDataExp }) => {
   const [gitHubValid, setGitHubValid] = useState('');
   const [whyJoinValid, setWhyJoinValid] = useState('');
 
-  if (bgDash) {
-    change = 'bg-lightDash text-dark'
-    modalBg = '#EDF1F7'
-    modalCol = '#14147A'
-    bgCard = 'bg-white'
-    cardText = 'text-dark'
-  }
-  else {
-    change = 'bg-dark text-white'
-    modalBg = '#14147A'
-    modalCol = '#FFF'
-    bgCard = 'bg-darkCard'
-    cardText = 'text-white'
-  }
-
   const [states, setState] = useState('');
   const [education, setEducation] = useState('');
   const [skill, setSkill] = useState('');
@@ -89,6 +94,8 @@ const Dashboard = ({ bgDash, setDataExp }) => {
     setSkill(event.target.value);
   };
 
+
+  //Modals Logic
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalEdit, setIsModalEdit] = useState(false);
 
@@ -107,7 +114,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
   };
 
 
-
+  //fetch Data
   useEffect(() => {
     axios("https://teaminnovation-endpoint.herokuapp.com/eoi-list/")
       .then((response) => {
@@ -119,7 +126,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
   
 
 
-
+  //filter logic
   const filterState = (data) => {
     if (states == '') {
       return data
@@ -155,7 +162,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
     setDataExp(filtered)
   }, [dataT, states, skill, education])
 
-
+  //delete 
   const deleteResource = (id) => {
     axios.delete(`https://teaminnovation-endpoint.herokuapp.com/eoi-delete/${id}`)
       .then((response) => {
@@ -166,7 +173,7 @@ const Dashboard = ({ bgDash, setDataExp }) => {
       .catch((error) => console.error(`Error: ${error}`));
   }
 
-
+//dropdown and logic
   const menu = (record) => (<Menu>
     <Menu.Item>
       <div

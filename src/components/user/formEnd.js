@@ -1,23 +1,20 @@
 import React from 'react';
-import { Icon } from '@iconify/react';
+
 
 
 
 const FormEnd = ({ text }) => {
 
   let color = 'text-orangee';
-  let smiley = 'text-dark';
   let bg = 'bg-dark'
 
 
   if (text === 'black') {
     color = 'text-orangee';
-    smiley = 'text-dark';
     bg = `bg-white`;
   }
   else {
     color = 'text-white';
-    smiley = 'text-primary';
     bg = `bg-dark`;
   }
 

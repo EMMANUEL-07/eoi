@@ -1,7 +1,6 @@
 import React from 'react';
 import Me from '../../../assets/EMMANUEL.jpg';
 import { Avatar } from '@mui/material';
-import SimpleReactValidator from 'simple-react-validator';
 
 const Profile = ({ bgDash }) => {
 
