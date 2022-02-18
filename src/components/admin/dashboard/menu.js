@@ -9,14 +9,14 @@ import { Tooltip } from '@mui/material';
 
 const Menu = ({ selected, bgDash, setBgDash }) => {
 
+  
+
   let menuBg = 'bg-dark'
   let hoverBg = 'hover:bg-blue-700 hover:text-white'
 
   let dashboard = hoverBg;
   let account = hoverBg;
   let logout = hoverBg;
-
-
 
   if (bgDash) {
     menuBg = 'bg-lightDash text-dark font-semibold'

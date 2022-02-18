@@ -52,28 +52,7 @@ export const knowledgeA = [
   }
 ]
 
-export const educationA = [
-  {
-    "id": 1,
-    "name": "SSCE"
-  },
-  {
-    "id": 2,
-    "name": "OND"
-  },
-  {
-    "id": 3,
-    "name": "HND"
-  },
-  {
-    "id": 4,
-    "name": "Undergraduate"
-  },
-  {
-    "id": 5,
-    "name": "BSc"
-  }
-]
+export const educationA = [ "SSCE", "OND", "HND", "BSC", "MSC"]
 
 export const genderA = [
   {
@@ -99,7 +78,11 @@ export const stateData = ["Lagos", "Abuja", "Rivers", "Oyo", "Abia", "Adamawa", 
 
 export const educationData = ["SSCE", "OND", "HND", "BSC", "MSC"]
 
-export const skillData = [["Frontend", "Front end development"], ["UI/UX", "UI/UX design"], ["Backend", "Back end development"], ["DevOps", "DevOps"], ["QA Testing", "QA testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile application development"], ["Product Manager", "Technical Product Management - SCRUM MASTER"], ["Others", "Others"]]
+export const skillData = [["Frontend", "Front end development"], ["UI/UX", "UI/UX"], ["Backend", "Back end development"], ["DevOps", "DevOps"], ["QA Testing", "QA testing"], ["Data Science", "Data Science"], ["Mobile Development", "Mobile application development"], ["Product Manager", "Technical Product Management - SCRUM MASTER"], ["Others", "Others"]]
 
+export const skillEdit = ["Frontend Development" , "UI/UX", "Backend Development", "DevOps", "QA Testing", "Data Science", "Mobile Application Development", "Technical Product Manager SCRUM Master", "Others"]
+
+
+export const learningEdit = ['Yes', 'No', 'Still Learning']
 
 export const getText = (val, arr) => arr[+val - 1]?.name;

@@ -4,7 +4,8 @@ import DummyData from './MOCK_DATA.json';
 import { Modal, Menu, Dropdown } from 'antd';
 import { Table } from 'antd';
 import axios from 'axios';
-import { skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText } from './constants'
+import { skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText, skillEdit, learningEdit } from './constants'
+import validator from 'validator';
 
 const Dashboard = ({ bgDash }) => {
 
@@ -14,6 +15,43 @@ const Dashboard = ({ bgDash }) => {
   let bgCard = 'bg-darkCard'
   let cardText = 'text-white'
 
+  const [modify, setModify] = useState({});
+
+  const [name, setName] = useState(modify?.fullname);
+  const [email, setEmail] = useState(modify?.email);
+  const [phone, setPhone] = useState(modify?.phone);
+  const [location, setLocation] = useState(modify?.city);
+  const [selectedGender, setSelectedGender] = useState(modify?.gender);
+  const [selectedQualification, setSelectedQualification] = useState(modify?.education);
+
+  const [selectedSkill, setSelectedSkill] = useState(modify?.skill);
+  const [selectedKnowledge, setSelectedKnowledge] = useState(modify?.knowledge);
+  const [challenge, setChallenge] = useState(modify?.challenges);
+
+  const [selectedUnderstand, setSelectedUnderstand] = useState(modify?.tnc);
+  const [pastProject, setPastProject] = useState(modify?.projects_details);
+  const [career, setCareer] = useState(modify?.career_brief);
+  const [gitHub, setGitHub] = useState(modify?.github_url);
+  const [whyJoin, setWhyJoin] = useState(modify?.join_network);
+
+  const [nameValid, setNameValid] = useState('');
+  const [emailValid, setEmailValid] = useState('');
+  const [phoneValid, setPhoneValid] = useState('');
+  const [locationValid, setLocationValid] = useState('');
+  const [selectedGenderValid, setSelectedGendeValid] = useState('');
+  const [selectedQualificationValid, setSelectedQualificationValid] = useState('');
+
+
+  const [skillValid, setSkillValid] = useState('');
+  const [knowledgeValid, setKnowledgeValid] = useState('');
+  const [challengeValid, setChallengeValid] = useState('');
+
+
+  const [understandValid, setUnderstandValid] = useState('');
+  const [pastProjectValid, setPastProjectValid] = useState('');
+  const [careerValid, setCareerValid] = useState('');
+  const [gitHubValid, setGitHubValid] = useState('');
+  const [whyJoinValid, setWhyJoinValid] = useState('');
 
   if (bgDash) {
     change = 'bg-lightDash text-dark'
@@ -38,6 +76,7 @@ const Dashboard = ({ bgDash }) => {
   const [resources, setResources] = useState([])
 
   const [deleted, setDelete] = useState(false)
+  const [edited, setEdit] = useState(false)
 
   const handleState = (event) => {
     setState(event.target.value);
@@ -76,7 +115,7 @@ const Dashboard = ({ bgDash }) => {
         setData(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-  }, [deleted]);
+  }, [deleted, edited]);
 
   console.log(dataT);
 
@@ -142,7 +181,13 @@ const Dashboard = ({ bgDash }) => {
         </div>
     </Menu.Item>
     <Menu.Item>
-      <div className={'flex text-dark'} onClick={() => setIsModalEdit(true)} >
+      <div
+        className={'flex text-dark'}
+        onClick={() => {
+          setModify(record)
+          setIsModalEdit(true)
+        }}
+      >
         <Icon icon="ant-design:edit-outlined" className={'mx-1 text-2xl  text-dark'} /> Edit
         </div>
     </Menu.Item>
@@ -274,7 +319,7 @@ const Dashboard = ({ bgDash }) => {
       title: '',
       dataIndex: 'dropdown',
       render: (text, record) =>
-        <Dropdown overlay={() => menu(record)}>
+        <Dropdown overlay={() => menu(record)} trigger={[ 'hover', 'click']}>
           <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
             <Icon icon="clarity:ellipsis-horizontal-line" className={'mx-1 text-2xl text-gray-600'} />
           </a>
@@ -283,7 +328,62 @@ const Dashboard = ({ bgDash }) => {
     },
   ];
 
+  const sendData = (id) => {
+    axios.post(`https://teaminnovation-endpoint.herokuapp.com/eoi-update/${id}/`, {
+      fullname: name ?  name : modify.fullname,
+      education: selectedQualification ?  selectedQualification : modify.education,
+      skill: selectedSkill ?  selectedSkill : modify.skill,
+      knowledge: selectedKnowledge ?  selectedKnowledge : modify.knowledge,
+      city: location ? location : modify.city,
+      phone: phone ? phone : modify.phone,
+      github_url: gitHub ?  gitHub : modify.github_url,
+      email: modify.email,
+      challenges: modify.challenges,
+      projects_details: modify.projects_details,
+      career_brief: modify.career_brief,
+      join_network: modify.join_network,
+      tnc: modify.tnc,
+      gender: modify.gender,
+    })
+      .then((response) => {
+        console.log('res', response);
+        handleOk()
+        setEdit(!edited)
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }
 
+  const submitForm = (id) => {
+
+    console.log(modify)
+
+    name === undefined ? setNameValid(true) : setNameValid(validator.isLength(name, { min: 2, max: 50 }))
+    phone === undefined ? setPhoneValid(true) : setPhoneValid(validator.isMobilePhone(phone))
+    gitHub === undefined ? setGitHubValid(true) : setGitHubValid(validator.isURL(gitHub))
+
+    setLocationValid(true)
+    setSkillValid(true)
+    setSelectedQualificationValid(true)
+    setKnowledgeValid(true)
+    setEmailValid(true)
+    setSelectedGendeValid(true)
+    setChallengeValid(true)
+    setUnderstandValid(true)
+    setPastProjectValid(true)
+    setCareerValid(true)
+    setWhyJoinValid(true)
+
+    console.log(name, email, phone, location, selectedGender, selectedQualification)
+    console.log(nameValid, emailValid, phoneValid, locationValid, selectedGenderValid, selectedQualificationValid)
+    console.log(selectedSkill, selectedKnowledge, challenge)
+    console.log(skillValid, knowledgeValid, challengeValid)
+    console.log(pastProject, career, gitHub, whyJoin, selectedUnderstand)
+    console.log(pastProjectValid, careerValid, gitHubValid, whyJoinValid, understandValid)
+
+    if (nameValid && emailValid && phoneValid && locationValid && selectedGenderValid && selectedQualificationValid && pastProjectValid && careerValid && gitHubValid && whyJoinValid && understandValid && skillValid && knowledgeValid && challengeValid) {
+      sendData(id)
+    }
+  }
 
   return (
     <div className={`flex flex-col ${change} px-6 lg:px-12 py-4 lg:py-2 h-full overflow-auto`}>
@@ -357,7 +457,7 @@ const Dashboard = ({ bgDash }) => {
                 <div className={'flex justify-between space-x-4'}>
                   <div>{e.city}</div>
                   <div>
-                    <Dropdown overlay={menu} trigger={['click']}>
+                    <Dropdown overlay={menu} trigger={['click', 'hover']}>
                       <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                         <Icon icon="clarity:ellipsis-horizontal-line" className={'mx-1 text-2xl text-gray-600'} />
                       </a>
@@ -443,54 +543,80 @@ const Dashboard = ({ bgDash }) => {
 
 
 
-        <Modal title={`Edit - ${modalData.fullname}`} visible={isModalEdit} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
+        <Modal title={`Edit - ${modify.fullname}`} visible={isModalEdit} onOk={handleOk} onCancel={handleCancel} okText={<div className={'text-dark'}>OK</div>} bodyStyle={{ height: '400px', overflow: 'auto', background: modalBg, color: modalCol }} closable cancelButtonProps={{ style: { display: 'none' } }}>
 
           <div class={'text-xs'}>
             <div className={'font-semibold text-base text-center'}>Update Details</div>
-            <div className={'flex flex-col my-2'}>
-              <span className={'font-medium text-sm'}>Skill:</span>
-              <span>{modalData.skill} </span>
+            <div className={'flex flex-col w-full'}>
+              <div className={'font-semibold text-sm lg:text-base'}>Full Name <span className={'text-red-600'} >*</span></div>
+              <div><input type='text' defaultValue={modify?.fullname} className={'w-full bg-transparent text-sm my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} onChange={(e) => setName(validator.trim(e.target.value))} /></div>
+
             </div>
-            <div className={'flex items-center my-2'}>
-              <div className={'basis-1/3 flex flex-col'}>
-                <span className={'font-medium text-sm'}>Skill Proficieny:</span>
-                <span>{modalData.knowledge} </span>
+
+            <div className={'flex flex-col  z-40'}>
+              <div className={'font-semibold text-sm lg:text-base'}>Phone Number <span className={'text-red-600'} >*</span></div>
+              <div><input type='tel' defaultValue={modify?.phone} className={'w-full bg-transparent text-sm my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none'} onChange={(e) => setPhone(validator.trim(e.target.value))} /></div>
+              {phoneValid === '' ? '' : phoneValid ? '' : <div className={`text-red-500 text-xs`}>Please input correct phone number </div>}
+
+            </div>
+
+            <div className={'flex flex-col w-full'}>
+              <div className={'font-semibold text-sm lg:text-base'}>Education <span className={'text-red-600'} >*</span></div>
+              <div>
+                <select defaultValue={modify?.education} className={'bg-transparent text-white w-full my-2 border-b-2 border-white outline-none'} onChange={(e) => setSelectedQualification(validator.trim(e.target.value))}>
+
+                  {educationA.map(e => <option key={e} value={e} className={'text-dark bg-white text-sm '} >{e}</option>)}
+                </select>
               </div>
 
-              <div className={'basis-1/3 flex flex-col'}>
-                <span className={'font-medium text-sm'}>Education:</span>
-                <span>{modalData.education} </span>
+            </div>
+
+            <div className={'flex flex-col w-full'}>
+              <div className={'font-semibold text-sm lg:text-base'}>State of residence? (In Nigeria) <span className={'text-red-600'} >*</span></div>
+              <div>
+                <select defaultValue={modify?.city} className={'bg-transparent text-white w-full my-2 border-b-2 border-white outline-none'} onChange={(e) => setLocation(validator.trim(e.target.value))}>
+
+                  {stateData.map(e => <option key={e} value={e} className={'text-dark bg-white text-sm '} >{e}</option>)}
+                </select>
               </div>
 
-              <div className={'basis-1/3 flex flex-col'}>
-                <span className={'font-medium text-sm'}>Job Disclaimer:</span>
-                <span> {modalData.tnc ? 'YES' : 'NO'} </span>
+            </div>
+
+
+            <div className={'flex flex-col w-full'}>
+              <div className={'font-semibold text-sm lg:text-base'}>Skill? <span className={'text-red-600'} >*</span></div>
+              <div>
+                <select defaultValue={modify?.skill} className={'bg-transparent text-white w-full my-2 border-b-2 border-white outline-none'} onChange={(e) => setSelectedSkill(validator.trim(e.target.value))}>
+
+                  {skillEdit.map(e => <option key={e} value={e} className={'text-dark bg-white text-sm '} >{e}</option>)}
+                </select>
               </div>
+
             </div>
 
-            <div className={'flex flex-col my-2'}>
-              <span className={'font-medium text-sm'}>GitHub:</span>
-              <span>{modalData.github_url} </span>
+
+
+            <div className={'flex flex-col w-full'}>
+              <div className={'font-semibold text-sm lg:text-base'}>Proficiency? <span className={'text-red-600'} >*</span></div>
+              <div>
+                <select defaultValue={modify?.knowledge} className={'bg-transparent text-white w-full my-2 border-b-2 border-white outline-none'} onChange={(e) => setSelectedKnowledge(validator.trim(e.target.value))}>
+
+                  {learningEdit.map(e => <option key={e} value={e} className={'text-dark bg-white text-sm '} >{e}</option>)}
+                </select>
+              </div>
+
             </div>
 
-            <div className={'flex flex-col my-2'}>
-              <span className={'font-medium text-sm'}>Projects:</span>
-              <span>{modalData.projects_details} </span>
+            <div className={'flex flex-col w-full'}>
+              <div className={'font-semibold text-sm lg:text-base'}>Github URL? </div>
+              <div>
+                <input type='text' defaultValue={modify?.github_url} onChange={(e) => setGitHub(e.target.value)} className={'w-full bg-transparent my-2 border-b-2 border-grey-700 hover:border-blue-500 focus:border-blue-500 outline-none text-sm'} />
+              </div>
+              {gitHubValid === '' ? '' : gitHubValid ? '' : <div className={`text-red-500 text-xs`}>Please enter your valid GitHub url </div>}
             </div>
 
-            <div className={'flex flex-col my-2'}>
-              <span className={'font-medium text-sm'}>Most Challenging:</span>
-              <span>{modalData.chanllenges} </span>
-            </div>
-
-            <div className={'flex flex-col my-2'}>
-              <span className={'font-medium text-sm'}>Career Journey:</span>
-              <span>{modalData.career_brief} </span>
-            </div>
-
-            <div className={'flex flex-col my-2'}>
-              <span className={'font-medium text-sm'}>Reason:</span>
-              <span>{modalData.join_network} </span>
+            <div className={'font-bold w-36 mx-auto px-10 py-1 tracking-widest rounded-tr-md rounded-bl-md border-blue-600 border-2 text-white bg-blue-600  hover:cursor-pointer'} onClick={() => submitForm(modify?.id)}>
+              Submit
             </div>
 
           </div>
@@ -498,7 +624,7 @@ const Dashboard = ({ bgDash }) => {
 
 
         </Modal>
-  
+
 
       </div>
 
