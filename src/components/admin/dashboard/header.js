@@ -7,18 +7,20 @@ import { Tooltip } from '@mui/material';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
 import axios from 'axios';
 
-const Header = ({ bgDash, setBgDash }) => {  
+const Header = ({ bgDash, setBgDash, sel, dataExp }) => {  
 
   return (
     <div className={'flex justify-end px-12 font-bold bg-white'}>
 
+      
+      { sel ? 
       <CsvDownload
-        data={DummyData}
+        data={dataExp}
         filename="Selected Resources"
         className={`flex font-bold px-8 py-2  my-2 tracking-widest rounded-tr-md rounded-bl-md text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:cursor-pointer`}
       >
         <Icon icon="bytesize:export" className={'text-xl md:mr-4'} /> <span className={'hidden md:block'}>Export </span>
-      </CsvDownload>
+      </CsvDownload> : '' }
 
       <div className={'flex items-center py-3 text-lg hover:cursor-pointer'}>
         <Badge className={'mx-4'} badgeContent='12' color='warning' >

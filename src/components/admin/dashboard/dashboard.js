@@ -7,7 +7,7 @@ import axios from 'axios';
 import { skillA, skillData, educationA, educationData, knowledgeA, stateData, genderA, getText, skillEdit, learningEdit } from './constants'
 import validator from 'validator';
 
-const Dashboard = ({ bgDash }) => {
+const Dashboard = ({ bgDash, setDataExp }) => {
 
   let change = 'bg-dark text-white'
   let modalBg = '#14147A'
@@ -153,7 +153,7 @@ const Dashboard = ({ bgDash }) => {
   useEffect(() => {
     const filtered = filteredData(dataT)
     setResources(filtered)
-    console.log('filter', filtered)
+    setDataExp(filtered)
   }, [dataT, states, skill, education])
 
 

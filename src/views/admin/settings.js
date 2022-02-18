@@ -13,7 +13,7 @@ const Settings = () => {
         <Menu selected='account'  bgDash={bgDash} />
       </div>
       <div className={'h-full flex flex-col-reverse lg:flex-col lg:basis-5/6'}>
-        <Header bgDash={bgDash} setBgDash={setBgDash} />
+        <Header bgDash={bgDash} setBgDash={setBgDash}   sel={false}/>
         <Profile  bgDash={bgDash} />
       </div>
       
