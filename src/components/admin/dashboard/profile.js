@@ -4,6 +4,8 @@ import { Avatar } from '@mui/material';
 
 const Profile = ({ bgDash }) => {
 
+
+  // Theme Logic
   let bg = 'bg-dark'
   let txt = 'text-white'
   let reverse = 'bg-white text-dark'

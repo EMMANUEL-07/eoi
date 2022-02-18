@@ -9,7 +9,7 @@ import { Tooltip } from '@mui/material';
 
 const Menu = ({ selected, bgDash }) => {
 
-  
+  // Theme Logic
 
   let menuBg = 'bg-dark'
   let hoverBg = 'hover:bg-blue-700 hover:text-white'
@@ -39,6 +39,7 @@ const Menu = ({ selected, bgDash }) => {
     logout = `${hoverBg}`;
   }
 
+  // drawer logic
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {

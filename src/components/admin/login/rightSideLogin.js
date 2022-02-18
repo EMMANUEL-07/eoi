@@ -7,6 +7,7 @@ import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs'
 
 const RightSideAdmin = () => {
 
+  // Theme Logic
   const [bg, setbg] = useState(false)
 
   let bgc = `bg-dark`;
